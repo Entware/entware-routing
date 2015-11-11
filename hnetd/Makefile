@@ -7,8 +7,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=hnetd
-PKG_SOURCE_VERSION:=d802317b77b02af7b5a6531d2eba1d2b790cac9a
-PKG_VERSION:=2015-09-15-$(PKG_SOURCE_VERSION)
+PKG_SOURCE_VERSION:=a67835f479ca9d756128c3554e8d4c21feb03b1f
+PKG_VERSION:=2015-09-29-$(PKG_SOURCE_VERSION)
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
@@ -54,7 +54,7 @@ define Package/hnet-full
   # Routing
   DEPENDS+=+babeld
   # Service discovery
-  DEPENDS+=+ohybridproxy
+  DEPENDS+=+ohybridproxy +zonestitcher
   # Distributed PCP support
   DEPENDS+=+miniupnpd +minimalist-pcproxy
 endef
@@ -68,7 +68,7 @@ define Package/hnet-full-secure
   # Routing
   DEPENDS+=+babeld
   # Service discovery
-  DEPENDS+=+ohybridproxy
+  DEPENDS+=+ohybridproxy +zonestitcher
   # Distributed PCP support
   DEPENDS+=+miniupnpd +minimalist-pcproxy
 endef
@@ -82,7 +82,7 @@ define Package/hnet-full-l2tp
   # Routing
   DEPENDS+=+babeld
   # Service discovery
-  DEPENDS+=+ohybridproxy
+  DEPENDS+=+ohybridproxy +zonestitcher
   # Distributed PCP support
   DEPENDS+=+miniupnpd +minimalist-pcproxy
 endef
