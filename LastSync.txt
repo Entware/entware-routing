@@ -1,3 +1,6 @@
-commit 2a8338559de5c4b077cde7a83f43f4700a17d5cc
-Author: Lars Gierth <larsg@systemli.org>
-Date:   Sat Feb 6 04:55:04 2016 +0100
+commit 05fa82f8789fce820f540d30e635dd24fb72cd1f
+Merge: 754f451 bbcd192
+Author: Bastian Bittorf <bittorf@bluebottle.com>
+Date:   Sat Mar 19 16:40:21 2016 +0100
+
+    Merge pull request #162 from HRogge/master
