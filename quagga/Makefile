@@ -129,35 +129,35 @@ define Package/quagga-vtysh
 endef
 
 define Package/quagga-zebra/conffiles
-/etc/quagga/zebra.conf
+/opt/etc/quagga/zebra.conf
 endef
 
 define Package/quagga-bgpd/conffiles
-/etc/quagga/bgpd.conf
+/opt/etc/quagga/bgpd.conf
 endef
 
 define Package/quagga-isisd/conffiles
-/etc/quagga/isisd.conf
+/opt/etc/quagga/isisd.conf
 endef
 
 define Package/quagga-ospfd/conffiles
-/etc/quagga/ospfd.conf
+/opt/etc/quagga/ospfd.conf
 endef
 
 define Package/quagga-ospf6d/conffiles
-/etc/quagga/ospf6d.conf
+/opt/etc/quagga/ospf6d.conf
 endef
 
 define Package/quagga-ripd/conffiles
-/etc/quagga/ripd.conf
+/opt/etc/quagga/ripd.conf
 endef
 
 define Package/quagga-ripngd/conffiles
-/etc/quagga/ripngd.conf
+/opt/etc/quagga/ripngd.conf
 endef
 
 define Package/quagga-babeld/conffiles
-/etc/quagga/babeld.conf
+/opt/etc/quagga/babeld.conf
 endef
 
 ifneq ($(SDK),)
@@ -175,8 +175,8 @@ CONFIG_PACKAGE_quagga-vtysh:=m
 endif
 
 CONFIGURE_ARGS+= \
-	--localstatedir=/var/run/quagga \
-	--sysconfdir=/etc/quagga/ \
+	--localstatedir=/opt/var/run/quagga \
+	--sysconfdir=/opt/etc/quagga/ \
 	--enable-shared \
 	--disable-static \
 	--enable-user=network \
@@ -200,94 +200,92 @@ MAKE_FLAGS += \
 	CFLAGS="$(TARGET_CFLAGS) -std=gnu99"
 
 define Package/quagga/install
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) ./files/quagga $(1)/usr/sbin/quagga.init
-	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) ./files/quagga.init $(1)/etc/init.d/quagga
+	$(INSTALL_DIR) $(1)/opt/etc/init.d
+	$(INSTALL_BIN) ./files/quagga $(1)/opt/etc/init.d/S50quagga
 endef
 
 define Package/quagga-watchquagga/install
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/watchquagga $(1)/usr/sbin/
+	$(INSTALL_DIR) $(1)/opt/sbin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/watchquagga $(1)/opt/sbin/
 endef
 
 define Package/quagga-zebra/install
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/zebra $(1)/usr/sbin/
-	$(INSTALL_DIR) $(1)/etc/quagga
-	chmod 0750 $(1)/etc/quagga
-	$(INSTALL_CONF) ./files/quagga.conf $(1)/etc/quagga/zebra.conf
+	$(INSTALL_DIR) $(1)/opt/sbin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/zebra $(1)/opt/sbin/
+	$(INSTALL_DIR) $(1)/opt/etc/quagga
+	chmod 0750 $(1)/opt/etc/quagga
+	$(INSTALL_CONF) ./files/quagga.conf $(1)/opt/etc/quagga/zebra.conf
 endef
 
 define Package/quagga-bgpd/install
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/bgpd $(1)/usr/sbin/
-	$(INSTALL_DIR) $(1)/etc/quagga
-	chmod 0750 $(1)/etc/quagga
-	$(INSTALL_CONF) ./files/quagga.conf $(1)/etc/quagga/bgpd.conf
+	$(INSTALL_DIR) $(1)/opt/sbin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/bgpd $(1)/opt/sbin/
+	$(INSTALL_DIR) $(1)/opt/etc/quagga
+	chmod 0750 $(1)/opt/etc/quagga
+	$(INSTALL_CONF) ./files/quagga.conf $(1)/opt/etc/quagga/bgpd.conf
 endef
 
 define Package/quagga-isisd/install
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/isisd $(1)/usr/sbin/
-	$(INSTALL_DIR) $(1)/etc/quagga
-	chmod 0750 $(1)/etc/quagga
-	$(INSTALL_CONF) ./files/quagga.conf $(1)/etc/quagga/isisd.conf
+	$(INSTALL_DIR) $(1)/opt/sbin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/isisd $(1)/opt/sbin/
+	$(INSTALL_DIR) $(1)/opt/etc/quagga
+	chmod 0750 $(1)/opt/etc/quagga
+	$(INSTALL_CONF) ./files/quagga.conf $(1)/opt/etc/quagga/isisd.conf
 endef
 
 define Package/quagga-ospfd/install
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/ospfd $(1)/usr/sbin/
-	$(INSTALL_DIR) $(1)/etc/quagga
-	chmod 0750 $(1)/etc/quagga
-	$(INSTALL_CONF) ./files/quagga.conf $(1)/etc/quagga/ospfd.conf
+	$(INSTALL_DIR) $(1)/opt/sbin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/ospfd $(1)/opt/sbin/
+	$(INSTALL_DIR) $(1)/opt/etc/quagga
+	chmod 0750 $(1)/opt/etc/quagga
+	$(INSTALL_CONF) ./files/quagga.conf $(1)/opt/etc/quagga/ospfd.conf
 endef
 
 define Package/quagga-ospf6d/install
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/ospf6d $(1)/usr/sbin/
-	$(INSTALL_DIR) $(1)/etc/quagga
-	chmod 0750 $(1)/etc/quagga
-	$(INSTALL_CONF) ./files/quagga.conf $(1)/etc/quagga/ospf6d.conf
+	$(INSTALL_DIR) $(1)/opt/sbin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/ospf6d $(1)/opt/sbin/
+	$(INSTALL_DIR) $(1)/opt/etc/quagga
+	chmod 0750 $(1)/opt/etc/quagga
+	$(INSTALL_CONF) ./files/quagga.conf $(1)/opt/etc/quagga/ospf6d.conf
 endef
 
 define Package/quagga-ripd/install
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/ripd $(1)/usr/sbin/
-	$(INSTALL_DIR) $(1)/etc/quagga
-	chmod 0750 $(1)/etc/quagga
-	$(INSTALL_CONF) ./files/quagga.conf $(1)/etc/quagga/ripd.conf
+	$(INSTALL_DIR) $(1)/opt/sbin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/ripd $(1)/opt/sbin/
+	$(INSTALL_DIR) $(1)/opt/etc/quagga
+	chmod 0750 $(1)/opt/etc/quagga
+	$(INSTALL_CONF) ./files/quagga.conf $(1)/opt/etc/quagga/ripd.conf
 endef
 
 define Package/quagga-ripngd/install
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/ripngd $(1)/usr/sbin/
-	$(INSTALL_DIR) $(1)/etc/quagga
-	chmod 0750 $(1)/etc/quagga
-	$(INSTALL_CONF) ./files/quagga.conf $(1)/etc/quagga/ripngd.conf
+	$(INSTALL_DIR) $(1)/opt/sbin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/ripngd $(1)/opt/sbin/
+	$(INSTALL_DIR) $(1)/opt/etc/quagga
+	chmod 0750 $(1)/opt/etc/quagga
+	$(INSTALL_CONF) ./files/quagga.conf $(1)/opt/etc/quagga/ripngd.conf
 endef
 
 define Package/quagga-babeld/install
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/babeld $(1)/usr/sbin/
-	$(INSTALL_DIR) $(1)/etc/quagga
-	chmod 0750 $(1)/etc/quagga
-	$(INSTALL_CONF) ./files/quagga.conf $(1)/etc/quagga/babeld.conf
+	$(INSTALL_DIR) $(1)/opt/sbin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/babeld $(1)/opt/sbin/
+	$(INSTALL_DIR) $(1)/opt/etc/quagga
+	chmod 0750 $(1)/opt/etc/quagga
+	$(INSTALL_CONF) ./files/quagga.conf $(1)/opt/etc/quagga/babeld.conf
 endef
 
 define Package/quagga-vtysh/install
-	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/vtysh $(1)/usr/bin/
+	$(INSTALL_DIR) $(1)/opt/bin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/vtysh $(1)/opt/bin/
 endef
 
 define Package/quagga-libospf/install
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libospf.so.* $(1)/usr/lib/
+	$(INSTALL_DIR) $(1)/opt/lib
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libospf.so.* $(1)/opt/lib/
 endef
 
 define Package/quagga-libzebra/install
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libzebra.so.* $(1)/usr/lib/
+	$(INSTALL_DIR) $(1)/opt/lib
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libzebra.so.* $(1)/opt/lib/
 endef
 
 $(eval $(call BuildPackage,quagga))
