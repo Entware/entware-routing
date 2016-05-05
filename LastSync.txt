@@ -1,6 +1,8 @@
-commit 05fa82f8789fce820f540d30e635dd24fb72cd1f
-Merge: 754f451 bbcd192
-Author: Bastian Bittorf <bittorf@bluebottle.com>
-Date:   Sat Mar 19 16:40:21 2016 +0100
+commit 56ee17afc017b7e6eda2cddc09e19a3ca0e7c93d
+Merge: 30dee5d a8856d5
+Author: axn <neumann@cgws.de>
+Date:   Wed May 4 15:36:42 2016 +0200
 
-    Merge pull request #162 from HRogge/master
+    Merge pull request #183 from rogerpueyo/master
+    
+    LuCI app for BMX7 (retry)

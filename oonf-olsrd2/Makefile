@@ -1,8 +1,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=oonf-olsrd2
-PKG_VERSION:=0.11.2
-PKG_REV:=a9a789405a6e5ef321a801f5a96c0440f20c16ae
+PKG_VERSION:=0.11.4
+PKG_REV:=a7087466958d3af477fecf4ad8e412ccca33d4c7
 PKG_RELEASE:=$(PKG_REV)
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
@@ -38,7 +38,7 @@ define Package/oonf-git/template
 endef
 
 define Package/oonf-olsrd2
-	$(call Package/oonf-git/template) 
+	$(call Package/oonf-git/template)
 	TITLE:= Build Olsrd V2 Routing Agent
 	DEPENDS:=+librt +libnl-tiny +libuci +oonf-init-scripts
 	VERSION:=$(PKG_VERSION)
