@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=miniupnpd
-PKG_VERSION:=1.9.20151212
-PKG_RELEASE:=1
+PKG_VERSION:=2.0
+PKG_RELEASE:=2
 
 PKG_SOURCE_URL:=http://miniupnp.free.fr/files
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_MD5SUM:=86465b35f711ca9982d48b34c094033a
+PKG_MD5SUM:=1c07a215dd9b362e75a9efc05e2fb3b4
 
 PKG_MAINTAINER:=Markus Stenberg <fingon@iki.fi>
 PKG_LICENSE:=BSD-3-Clause
@@ -23,7 +23,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/miniupnpd
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+iptables +libip4tc +IPV6:libip6tc +IPV6:ip6tables
+  DEPENDS:=+iptables +libip4tc +IPV6:libip6tc +IPV6:ip6tables +libuuid
   TITLE:=Lightweight UPnP IGD, NAT-PMP & PCP daemon
   SUBMENU:=Firewall
   URL:=http://miniupnp.free.fr/
@@ -50,9 +50,10 @@ define Build/Prepare
 endef
 
 MAKE_FLAGS += \
-	TEST=0 \
+	TARGET_OPENWRT=1 TEST=0 \
 	LIBS="" \
-	CC="$(TARGET_CC) -DIPTABLES_143 -lip4tc $(if $(CONFIG_IPV6),-lip6tc)" \
+	CC="$(TARGET_CC) -DIPTABLES_143 \
+		-lip4tc $(if $(CONFIG_IPV6),-lip6tc) -luuid" \
 	CONFIG_OPTIONS="$(if $(CONFIG_IPV6),--ipv6) --leasefile" \
 	-f Makefile.linux \
 	miniupnpd

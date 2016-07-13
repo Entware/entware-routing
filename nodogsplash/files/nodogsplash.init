@@ -60,26 +60,6 @@ append_config_option() {
   [ -n "$val" ] && echo "$option_name $val" >> $config_file
 }
 
-setup_user_authentication() {
-  local cfg="$1"
-  local val
-
-  config_get_bool val "$cfg" authenticate_immediately 0
-  [ $val -gt 0 ] && echo "AuthenticateImmediately yes" >> $CONFIGFILE
-
-  config_get val "$cfg" username
-  if [ -n "$val" ] ; then
-    echo "UsernameAuthentication 1" >> $CONFIGFILE
-    echo "Username $val" >> $CONFIGFILE
-  fi
-
-  config_get val "$cfg" password
-  if [ -n "$val" ] ; then
-    echo "PasswordAuthentication 1" >> $CONFIGFILE
-    echo "Password $val" >> $CONFIGFILE
-  fi
-}
-
 setup_mac_lists() {
   local cfg="$1"
   local MAC=""
@@ -152,11 +132,11 @@ generate_uci_config() {
 
   config_get val "$cfg" config
   if [ -n "$val" ] ; then
-    if [ -f "$val" ] ; then
+    if [ ! -f "$val" ] ; then
       nolog error "Configuration file '$file' doesn't exist"
       return 0
     fi
-    cat $val > CONFIGFILE
+    cat "$val" >> $CONFIGFILE
   fi
 
   config_get val "$cfg" network
@@ -225,7 +205,6 @@ generate_uci_config() {
   [ -n "$upload" -o -n "$download" ] && echo "TrafficControl yes" >> $CONFIGFILE
 
   setup_mac_lists "$cfg"
-  setup_user_authentication "$cfg"
   setup_firewall "$cfg"
 }
 
@@ -257,7 +236,7 @@ start_service() {
   mkdir -p /tmp/etc/
   config_load nodogsplash
 
-  config_foreach create_instance instance
+  config_foreach create_instance nodogsplash
 }
 
 stop_service() {

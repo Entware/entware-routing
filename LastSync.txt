@@ -1,8 +1,6 @@
-commit 56ee17afc017b7e6eda2cddc09e19a3ca0e7c93d
-Merge: 30dee5d a8856d5
-Author: axn <neumann@cgws.de>
-Date:   Wed May 4 15:36:42 2016 +0200
+commit fe8fa0ba86e35b1ec6b83fb1eaf123849a69afc9
+Merge: 0f44bfc c5426a2
+Author: Markus Stenberg <fingon@iki.fi>
+Date:   Wed Jul 13 07:58:15 2016 +0200
 
-    Merge pull request #183 from rogerpueyo/master
-    
-    LuCI app for BMX7 (retry)
+    Merge pull request #203 from kdarbyshirebryant/miniupnpdfuzz

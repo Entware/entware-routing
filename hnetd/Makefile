@@ -7,8 +7,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=hnetd
-PKG_SOURCE_VERSION:=a67835f479ca9d756128c3554e8d4c21feb03b1f
-PKG_VERSION:=2015-09-29-$(PKG_SOURCE_VERSION)
+PKG_SOURCE_VERSION:=606d7e904603ad8792ac1a7ba825618df97b5a4e
+PKG_VERSION:=2016-06-28-$(PKG_SOURCE_VERSION)
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
@@ -38,7 +38,7 @@ define Package/hnetd/Default
   TITLE:=HNCP Homenet daemon - $(2)
   URL:=https://github.com/sbyx/hnetd
   DEPENDS:=+odhcpd +odhcp6c +netifd $(3)
-  DEPENDS+=+@IPV6
+  DEPENDS+=@IPV6
   VARIANT:=$1
 endef
 
