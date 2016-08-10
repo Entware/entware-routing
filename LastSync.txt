@@ -1,6 +1,8 @@
-commit fe8fa0ba86e35b1ec6b83fb1eaf123849a69afc9
-Merge: 0f44bfc c5426a2
-Author: Markus Stenberg <fingon@iki.fi>
-Date:   Wed Jul 13 07:58:15 2016 +0200
+commit 56565aad08c916a26b3d895ed151ded36a03faa4
+Merge: 259cb6e dda5a7d
+Author: Bastian Bittorf <bb@npl.de>
+Date:   Tue Aug 9 13:15:07 2016 +0200
 
-    Merge pull request #203 from kdarbyshirebryant/miniupnpdfuzz
+    Merge pull request #217 from HRogge/master
+    
+    Update to OONF 0.12.2 + coverity fix
