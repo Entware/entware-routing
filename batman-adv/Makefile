@@ -11,7 +11,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=batman-adv
 
 PKG_VERSION:=2016.2
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 PKG_MD5SUM:=dd1ab664475902fc3dbf34998bbe5a90
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
@@ -62,10 +62,10 @@ PKG_EXTRA_CFLAGS:= \
 
 NOSTDINC_FLAGS = \
 	-I$(PKG_BUILD_DIR)/net/batman-adv \
-	-I$(STAGING_DIR)/usr/include/mac80211-backport/uapi \
 	-I$(STAGING_DIR)/usr/include/mac80211-backport \
-	-I$(STAGING_DIR)/usr/include/mac80211/uapi \
+	-I$(STAGING_DIR)/usr/include/mac80211-backport/uapi \
 	-I$(STAGING_DIR)/usr/include/mac80211 \
+	-I$(STAGING_DIR)/usr/include/mac80211/uapi \
 	-include backport/backport.h \
 	-include $(PKG_BUILD_DIR)/compat-hacks.h
 
@@ -83,8 +83,6 @@ endef
 define Build/Prepare
 	$(call Build/Prepare/Default)
 	$(CP) ./files/compat-hacks.h $(PKG_BUILD_DIR)/
-	$(SED) '/#define _NET_BATMAN_ADV_MAIN_H_/a\#undef CONFIG_MODULE_STRIPPED' \
-		$(PKG_BUILD_DIR)/net/batman-adv/main.h
 endef
 
 define Build/Clean
