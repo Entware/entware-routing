@@ -1,8 +1,8 @@
-commit 659931e6cea45f010747ac8a9894866d41778a74
-Merge: 73b3961 d5075de
-Author: Jo-Philipp Wich <jo@mein.io>
-Date:   Wed Oct 5 11:29:00 2016 +0200
+commit 899235a4a6370e86ad3674c38c3f95d23c8f3dc8
+Merge: 34a2618 3e7f211
+Author: lindnermarek <mareklindner@neomailbox.ch>
+Date:   Sun Dec 4 09:38:37 2016 +0800
 
-    Merge pull request #232 from Noltari/bird-next
-
-    bird: update to v1.6.2
+    Merge pull request #241 from ecsv/batman-adv-2016.4-maint-2016-10-29
+    
+    batman-adv: add patches from 2016.4-maint 2016-12-02
