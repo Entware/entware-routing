@@ -81,7 +81,7 @@ define Build/Compile
 	CC="$(TARGET_CC)" \
 	AR="$(TARGET_AR)" \
 	RANLIB="$(TARGET_RANLIB)" \
-	CFLAGS="$(TARGET_CFLAGS)" \
+	CFLAGS="$(TARGET_CFLAGS) -Wno-shift-negative-value" \
 	LDFLAGS="$(TARGET_LDFLAGS)" \
 	SYSTEM="linux" \
 	TARGET_ARCH="$(CONFIG_ARCH)" \
