@@ -9,9 +9,10 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=batctl
 
-PKG_VERSION:=2016.5
+PKG_VERSION:=2017.0
 PKG_RELEASE:=0
-PKG_MD5SUM:=7b33fb47c7fa5b317e9a152a286999fc
+PKG_MD5SUM:=17c0ac0746f1994ddacc88ebf48e5aec
+PKG_HASH:=c0bb1127d6070b46abeb8d6a63d1150d71fa85f87f9a846873b649a21934c686
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://downloads.open-mesh.org/batman/releases/batman-adv-$(PKG_VERSION)
@@ -27,7 +28,7 @@ define Package/batctl
   CATEGORY:=Network
   DEPENDS:=+kmod-batman-adv +libnl-tiny +libc +librt
   TITLE:=B.A.T.M.A.N. Advanced user space configuration tool batctl
-  MAINTAINER:=Marek Lindner <mareklindner@neomailbox.ch>
+  MAINTAINER:=Simon Wunderlich <sw@simonwunderlich.de>
 endef
 
 define Package/batctl/description

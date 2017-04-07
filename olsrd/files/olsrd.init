@@ -17,15 +17,15 @@ N='
 '
 
 log() {
-	logger -t olsrd -p daemon.info -s "${initscript}: $@"
+	logger -t olsrd -p daemon.info -s "${initscript}: $*"
 }
 
 error() {
-        logger -t olsrd -p daemon.err -s "${initscript}: ERROR: $@"
+        logger -t olsrd -p daemon.err -s "${initscript}: ERROR: $*"
 }
 
 warn() {
-        logger -t olsrd -p daemon.warn -s "${initscript}: WARNING: $@"
+        logger -t olsrd -p daemon.warn -s "${initscript}: WARNING: $*"
 }
 
 validate_varname() {
@@ -124,21 +124,20 @@ olsrd_write_option() {
 		fi
 	fi
 
-	echo -n "${N}$param$option $value"
-
-	return 0
+	printf '%s' "${N}$param$option $value"
 }
 
 olsrd_write_plparam() {
 	local funcname="olsrd_write_plparam"
 	local param="$1"
 	local cfg="$2"
-	validate_varname "$cfg" || return 1
 	local option="$3"
-	validate_varname "$option" || return 1
 	local value="$4"
 	local option_type="$5"
 	local _option oldIFS
+
+	validate_varname "$cfg" || return 1
+	validate_varname "$option" || return 1
 
 	if [ "$option_type" = bool ]; then
 		case "$value" in
@@ -177,24 +176,24 @@ olsrd_write_plparam() {
 		else
 			warning_invalid_value olsrd "$cfg" "NonOlsrIf"
 		fi
+
 		[ -z "$ifname" ] || value=$ifname
 	fi
 
-	echo -n "${N}${param}PlParam \"$option\" \"$value\""
-
-	return 0
+	printf '%s' "${N}${param}PlParam \"$option\" \"$value\""
 }
 
 config_update_schema() {
 	local schema_varname="$1"
-	validate_varname "$schema_varname" || return 1
 	local command="$2"
-	validate_varname "$command" || return 1
 	local option="$3"
-	validate_varname "$option" || return 1
 	local value="$4"
 	local schema
 	local cur_option
+
+	validate_varname "$schema_varname" || return 1
+	validate_varname "$command" || return 1
+	validate_varname "$option" || return 1
 
 	case "$varname" in
 		*_LENGTH) return 0;;
@@ -274,7 +273,7 @@ config_write_options() {
 	already_in_schema "speed" && {
 		get_value_for_entry "speed"
 
-		if [ 2>/dev/null $value -gt 0 -a $value -le 20 ]; then
+		if test 2>/dev/null "$value" -gt 0 -a "$value" -le 20 ; then
 			speed="$value"
 		else
 			log "$funcname() Warning: invalid speed-value: '$value' - allowed integers: 1...20, fallback to 6"
@@ -290,30 +289,30 @@ config_write_options() {
 		if [ -n "$speed" ]; then		# like sven-ola freifunk firmware fff-1.7.4
 			case "$schema_entry" in
 				HelloInterval)
-					value="$(( $speed / 2 + 1 )).0"
+					value="$(( speed / 2 + 1 )).0"
 				;;
 				HelloValidityTime)
-					value="$(( $speed * 25 )).0"
+					value="$(( speed * 25 )).0"
 				;;
-				TcInterval)	# todo: not fisheye? -> $(( $speed * 2 ))
-					value=$(( $speed / 2 ))
+				TcInterval)	# todo: not fisheye? -> $(( speed * 2 ))
+					value=$(( speed / 2 ))
 					[ $value -eq 0 ] && value=1
 					value="$value.0"
 				;;
 				TcValidityTime)
-					value="$(( $speed * 100 )).0"
+					value="$(( speed * 100 )).0"
 				;;
 				MidInterval)
-					value="$(( $speed * 5 )).0"
+					value="$(( speed * 5 )).0"
 				;;
 				MidValidityTime)
-					value="$(( $speed * 100 )).0"
+					value="$(( speed * 100 )).0"
 				;;
 				HnaInterval)
-					value="$(( $speed * 2 )).0"
+					value="$(( speed * 2 )).0"
 				;;
 				HnaValidityTime)
-					value="$(( $speed * 25 )).0"
+					value="$(( speed * 25 )).0"
 				;;
 				*)
 					get_value_for_entry "$schema_entry" || continue
@@ -396,6 +395,8 @@ olsrd_write_olsrd() {
 
 	config_get smartgateway "$cfg" SmartGateway
 	config_get smartgatewayuplink "$cfg" SmartGatewayUplink
+	export smartgateway
+	export smartgatewayuplink
 
 	config_write_options "$OLSRD_OLSRD_SCHEMA" "$cfg" olsrd_write_option
 	echo
@@ -413,12 +414,10 @@ olsrd_write_ipcconnect() {
 
 	[ "$IPCCONNECT_COUNT" -gt 0 ] && return 0
 
-	echo -n "${N}IpcConnect${N}{"
+	printf '%s' "${N}IpcConnect${N}{"
 	config_write_options "$OLSRD_IPCCONNECT_SCHEMA" "$cfg" olsrd_write_option "${T}"
 	echo "${N}}"
 	IPCCONNECT_COUNT=$((IPCCONNECT_COUNT + 1))
-
-	return 0
 }
 
 olsrd_write_hna4() {
@@ -441,11 +440,9 @@ olsrd_write_hna4() {
 		return 0
 	fi
 
-	[ "$HNA4_COUNT" -le 0 ] && echo -n "${N}Hna4${N}{"
-	echo -n "${N}${T}${T}$netaddr $netmask"
+	[ "$HNA4_COUNT" -le 0 ] && printf '%s' "${N}Hna4${N}{"
+	printf '%s' "${N}${T}${T}$netaddr $netmask"
 	HNA4_COUNT=$((HNA4_COUNT + 1))
-
-	return 0
 }
 
 olsrd_write_hna6() {
@@ -468,39 +465,60 @@ olsrd_write_hna6() {
 		return 0
 	fi
 
-	[ "$HNA6_COUNT" -le 0 ] && echo -n "${N}Hna6${N}{"
-	echo -n "${N}${T}${T}$netaddr $prefix"
+	[ "$HNA6_COUNT" -le 0 ] && printf '%s' "${N}Hna6${N}{"
+	printf '%s' "${N}${T}${T}$netaddr $prefix"
 	HNA6_COUNT=$((HNA6_COUNT + 1))
-
-	return 0
 }
 
-olsrd_write_loadplugin() {
-	local funcname="olsrd_write_loadplugin"
+find_most_recent_plugin_libary()
+{
+	local library="$1"	# e.g. 'olsrd_dyn_gw' or 'olsrd_txtinfo.so.1.1'
+	local file file_fullpath unixtime
+
+	for file in "/lib/$library"* "/usr/lib/$library"* "/usr/local/lib/$library"*; do {
+		[ -f "$file" ] && {
+			file_fullpath="$file"
+			file="$( basename "$file" )"
+			# make sure that we do not select
+			# 'olsrd_dyn_gw_plain.so.0.4' if user wants
+			# 'olsrd_dyn_gw.so.0.5' -> compare part before 1st dot
+			[ "${library%%.*}" = "${file%%.*}" ] && {
+				unixtime="$( date +%s -r "$file_fullpath" )"
+				echo "$unixtime $file"
+			}
+		}
+	} done | sort -n | tail -n1 | cut -d' ' -f2
+}
+
+olsrd_write_loadplugin()
+{
+	local funcname='olsrd_write_loadplugin'
 	local cfg="$1"
+	local ignore name suffix lat lon latlon_infile
+
 	validate_varname "$cfg" || return 0
-	local ignore
-	local name
-	local suffix
-	local lat
-	local lon
-	local latlon_infile
 
 	config_get_bool ignore "$cfg" ignore 0
 	[ "$ignore" -ne 0 ] && return 0
 
+	# e.g. olsrd_txtinfo.so.1.1 or 'olsrd_txtinfo'
 	config_get library "$cfg" library
-	if ! validate_olsrd_option "$library"; then
-		warning_invalid_value olsrd "$cfg" "library"
-		return 0
-	fi
-	if ! [ -x "/lib/$library" -o -x "/usr/lib/$library" -o -x "/usr/local/lib/$library" ]; then
+
+	library="$( find_most_recent_plugin_libary "$library" )"
+	if [ -z "$library" ]; then
 		log "$funcname() Warning: Plugin library '$library' not found, skipped"
 		return 0
+	else
+		library="$( basename "$library" )"
 	fi
 
+	validate_olsrd_option "$library" || {
+		warning_invalid_value olsrd "$cfg" 'library'
+		return 0
+	}
+
 	case "$library" in
-		olsrd_nameservice.*)
+		'olsrd_nameservice.'*)
 			config_get name "$cfg" name
 			[ -z "$name" ] && config_set "$cfg" name $SYSTEM_HOSTNAME
 
@@ -527,16 +545,14 @@ olsrd_write_loadplugin() {
 
 			[ -z "$latlon_file" ] && config_set "$cfg" latlon_file '/var/run/latlon.js'
 		;;
-		olsrd_watchdog.*)
+		'olsrd_watchdog.'*)
 			config_get wd_file "$cfg" file
 		;;
 	esac
 
-	echo -n "${N}LoadPlugin \"$library\"${N}{"
+	printf '%s' "${N}LoadPlugin \"$library\"${N}{"
 	config_write_options "$OLSRD_LOADPLUGIN_SCHEMA" "$cfg" olsrd_write_plparam "${T}"
 	echo "${N}}"
-
-	return 0
 }
 
 olsrd_write_interface() {
@@ -575,19 +591,17 @@ olsrd_write_interface() {
 
 	[ -z "$ifnames" ] && return 0
 
-	echo -n "${N}Interface$ifnames${N}{"
+	printf '%s' "${N}Interface$ifnames${N}{"
 	config_write_options "$OLSRD_INTERFACE_SCHEMA" "$cfg" olsrd_write_option "${T}"
 	echo "${N}}"
 	INTERFACES_COUNT=$((INTERFACES_COUNT + 1))
-
-	return 0
 }
 
 olsrd_write_interface_defaults() {
 	local cfg="$1"
 	validate_varname "$cfg" || return 0
 
-	echo -n "${N}InterfaceDefaults$ifnames${N}{"
+	printf '%s' "${N}InterfaceDefaults$ifnames${N}{"
 	config_write_options "$OLSRD_INTERFACE_DEFAULTS_SCHEMA" "$cfg" olsrd_write_option "${T}"
 	echo "${N}}"
 
@@ -596,13 +610,13 @@ olsrd_write_interface_defaults() {
 
 olsrd_update_schema() {
 	local command="$1"
-	validate_varname "$command" || return 0
 	local varname="$2"
-	validate_varname "$varname" || return 0
 	local value="$3"
 	local cfg="$CONFIG_SECTION"
 	local cfgt
-	local cur_varname
+
+	validate_varname "$command" || return 0
+	validate_varname "$varname" || return 0
 
 	config_get cfgt "$cfg" TYPE
 	case "$cfgt" in
@@ -640,7 +654,7 @@ get_wan_ifnames()
 {
 	local wanifnames word catch_next
 
-	which ip >/dev/null || return 1
+	command -v ip >/dev/null || return 1
 
 	set -- $( ip route list exact 0.0.0.0/0 table all )
 	for word in $*; do
@@ -669,8 +683,10 @@ get_wan_ifnames()
 
 olsrd_setup_smartgw_rules() {
 	local funcname="olsrd_setup_smartgw_rules"
-	# Check if ipip is installed
-	[ -e /etc/modules.d/[0-9]*-ipip ] || {
+	local file=
+
+	for file in /etc/modules.d/[0-9]*-ipip; do :; done
+	[ -e "$file" ] || {
 		log "$funcname() Warning: kmod-ipip is missing. SmartGateway will not work until you install it."
 		return 1
 	}
@@ -683,8 +699,8 @@ olsrd_setup_smartgw_rules() {
 		nowan=0
 	fi
 
-	IP4T=$(which iptables)
-	IP6T=$(which ip6tables)
+	IP4T="$( command -v iptables )"
+	IP6T="$( command -v ip6tables )"
 
 	# Delete smartgw firewall rules first
 	if [ "$UCI_CONF_NAME" = "olsrd6" ]; then
@@ -706,15 +722,17 @@ olsrd_setup_smartgw_rules() {
 		while $IP4T -t nat -D postrouting_rule -o tnl_+ -j MASQUERADE 2> /dev/null; do :;done
 	fi
 
+	# var 'smartgateway' + 'smartgatewayuplink' build in olsrd_write_olsrd()
 	if [ "$smartgateway" = "yes" ]; then
 		log "$funcname() Notice: Inserting firewall rules for SmartGateway"
+
 		if [ ! "$smartgatewayuplink" = "none" ]; then
 			if [ "$smartgatewayuplink" = "ipv4" ]; then
 				# Allow everything to be forwarded to tnl_+ and use NAT for it
 				$IP4T -I forwarding_rule -o tnl_+ -j ACCEPT
 				$IP4T -t nat -I postrouting_rule -o tnl_+ -j MASQUERADE
 				# Allow forwarding from tunl0 to (all) wan-interfaces
-				if [ "$nowan"="0" ]; then
+				if [ "$nowan" = '0' ]; then
 					for IFACE in $wanifnames; do
 						$IP4T -A forwarding_rule -i tunl0 -o $IFACE -j ACCEPT
 					done
@@ -725,7 +743,7 @@ olsrd_setup_smartgw_rules() {
 				done
 			elif [ "$smartgatewayuplink" = "ipv6" ]; then
 				$IP6T -I forwarding_rule -o tnl_+ -j ACCEPT
-				if [ "$nowan"="0" ]; then
+				if [ "$nowan" = '0' ]; then
 					for IFACE in $wanifnames; do
 						$IP6T -A forwarding_rule -i tunl0 -o $IFACE -j ACCEPT
 					done
@@ -737,7 +755,7 @@ olsrd_setup_smartgw_rules() {
 				$IP4T -t nat -I postrouting_rule -o tnl_+ -j MASQUERADE
 				for IPT in $IP4T $IP6T; do
 					$IPT -I forwarding_rule -o tnl_+ -j ACCEPT
-					if [ "$nowan"="0" ]; then
+					if [ "$nowan" = '0' ]; then
 						for IFACE in $wanifnames; do
 							$IPT -A forwarding_rule -i tunl0 -o $IFACE -j ACCEPT
 						done
