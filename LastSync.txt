@@ -1,9 +1,8 @@
-commit be5af183672ec20756264734bd219607a5e33397
-Merge: afd78d2 1f2e4d7
-Author: Simon Wunderlich <sw@simonwunderlich.de>
-Date:   Mon Jan 30 09:45:44 2017 +0100
+commit 3aa019fc19cd830e7d2fb5d7cb9e4a52d97dbaac
+Author: Pau Escrich <p4u@dabax.net>
+Date:   Wed Mar 29 03:01:39 2017 +0200
 
-    Merge pull request #267 from openwrt-routing/mareklindner/batman-adv/batman-v-enable-by-default
-
-    batman-adv: compile batman v by default
+    luci-app-bmx6: remove '$' as identifier for special json functions
+    
+    Signed-off-by: Pau Escrich <p4u@dabax.net>
 
