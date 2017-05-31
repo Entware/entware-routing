@@ -1,8 +1,8 @@
-commit 3aa019fc19cd830e7d2fb5d7cb9e4a52d97dbaac
-Author: Pau Escrich <p4u@dabax.net>
-Date:   Wed Mar 29 03:01:39 2017 +0200
+commit eb02edab5970e5622a9902f04fc543601374a159
+Merge: 5ab3806 51d732e
+Author: Jo-Philipp Wich <jo@mein.io>
+Date:   Thu May 18 10:07:07 2017 +0200
 
-    luci-app-bmx6: remove '$' as identifier for special json functions
+    Merge pull request #295 from dedeckeh/pr_nat46_map
     
-    Signed-off-by: Pau Escrich <p4u@dabax.net>
-
+    nat46: improve 1:1 map share ratio support
