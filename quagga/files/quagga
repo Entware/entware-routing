@@ -24,9 +24,9 @@ else
 fi
 shift
 ARG_DAEMONS=$*
-BINDIR=/usr/sbin
-CONFDIR=/etc/quagga
-STATEDIR=/var/run/quagga
+BINDIR=/opt/sbin
+CONFDIR=/opt/etc/quagga
+STATEDIR=/opt/var/run/quagga
 RUNUSER=network
 RUNGROUP=$RUNUSER
 DAEMONS="zebra ripd ripngd ospfd ospf6d bgpd"
