@@ -1,8 +1,9 @@
-commit eb02edab5970e5622a9902f04fc543601374a159
-Merge: 5ab3806 51d732e
-Author: Jo-Philipp Wich <jo@mein.io>
-Date:   Thu May 18 10:07:07 2017 +0200
+commit 3cc8d49900fafbe76f44e0e912ee888fafd8bbb4
+Merge: e656a6e 187937b
+Author: Simon Wunderlich <sw@simonwunderlich.de>
+Date:   Sat Aug 12 09:15:34 2017 +0200
 
-    Merge pull request #295 from dedeckeh/pr_nat46_map
-    
-    nat46: improve 1:1 map share ratio support
+    Merge pull request #318 from ecsv/batadv-2017.2-ftbfs
+
+    batman-adv: Prevent FTBFS when redefining ether_setup
+
