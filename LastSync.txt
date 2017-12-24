@@ -1,8 +1,7 @@
-commit 5457ae65243958b64ffea96e28d868a3d6820954
-Merge: 5c6c04d b47bae1
-Author: Jo-Philipp Wich <jo@mein.io>
-Date:   Wed Dec 6 13:50:46 2017 +0100
+commit dabd5842b4bd7c9506cb6b8f9f4df0fa2ca28523
+Author: Alexander Krupenkin <mail@akru.me>
+Date:   Wed Dec 20 15:10:14 2017 +0300
 
-    Merge pull request #331 from lynxis/rb_smcroute
+    cjdns: update to version 0.20
     
-    smcroute: make build id optional
+    Signed-off-by: Alexander Krupenkin <mail@akru.me>
