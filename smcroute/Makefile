@@ -42,17 +42,17 @@ define Build/Compile
 endef
 
 define Package/smcroute/conffiles
-	/etc/smcroute.conf
+	/opt/etc/smcroute.conf
 endef
 
 define Package/smcroute/install
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_DIR) $(1)/etc/init.d/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/smcroute $(1)/usr/sbin/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/mcsender $(1)/usr/bin/
-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/smcroute.conf $(1)/etc
-	$(INSTALL_BIN) ./files/smcroute.init $(1)/etc/init.d/smcroute
+	$(INSTALL_DIR) $(1)/opt/sbin
+	$(INSTALL_DIR) $(1)/opt/bin
+	$(INSTALL_DIR) $(1)/opt/etc/init.d/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/smcroute $(1)/opt/sbin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/mcsender $(1)/opt/bin/
+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/smcroute.conf $(1)/opt/etc
+	$(INSTALL_BIN) ./files/S50smcroute $(1)/opt/etc/init.d/
 endef
 
 $(eval $(call BuildPackage,smcroute))

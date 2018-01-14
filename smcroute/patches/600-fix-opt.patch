@@ -1,0 +1,22 @@
+--- a/ipc.c
++++ b/ipc.c
+@@ -28,7 +28,7 @@
+ 
+ #include "mclab.h"
+ 
+-#define SOCKET_PATH "/var/run/smcroute"
++#define SOCKET_PATH "/opt/var/run/smcroute"
+ 
+ /* server's listen socket */
+ static int server_sd = -1;
+--- a/smcroute.c
++++ b/smcroute.c
+@@ -37,7 +37,7 @@
+ 
+ #include "mclab.h"
+ 
+-#define SMCROUTE_SYSTEM_CONF "/etc/smcroute.conf"
++#define SMCROUTE_SYSTEM_CONF "/opt/etc/smcroute.conf"
+ 
+ int do_debug_logging = 0;
+ 
