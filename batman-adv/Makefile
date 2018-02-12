@@ -104,4 +104,4 @@ define KernelPackage/batman-adv/install
 	$(INSTALL_BIN) ./files/lib/netifd/proto/batadv_vlan.sh $(1)/lib/netifd/proto
 endef
 
-$(eval $(call KernelPackage,batman-adv))
+#$(eval $(call KernelPackage,batman-adv))
