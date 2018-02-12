@@ -78,4 +78,4 @@ define Package/miniupnpd/install
 	$(INSTALL_DATA) ./files/firewall.include $(1)/usr/share/miniupnpd/firewall.include
 endef
 
-$(eval $(call BuildPackage,miniupnpd))
+#$(eval $(call BuildPackage,miniupnpd))
