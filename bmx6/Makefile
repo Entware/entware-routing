@@ -28,11 +28,11 @@ PKG_NAME:=bmx6
 
 PKG_SOURCE_PROTO:=git
 
-#PKG_SOURCE_URL:=git://bmx6.net/bmx6.git
-PKG_SOURCE_URL:=git://github.com/axn/bmx6.git
+PKG_SOURCE_URL:=git://github.com/bmx-routing/bmx6.git
+#PKG_SOURCE_URL:=file:///usr/src/bmx-routing/bmx6.git
 
-PKG_REV:=4016a1980d900309771e432d1f7c741d6c48d477
-PKG_VERSION:=r2017032301
+PKG_REV:=0312168aaa384379ccbefd4b2d936fc698664d5b
+PKG_VERSION:=r2018020902
 PKG_RELEASE:=5
 PKG_LICENSE:=GPL-2.0
 
@@ -148,9 +148,9 @@ endef
 #	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lib/bmx6_quagga/bmx6_quagga.so $(1)/usr/lib/bmx6_quagga.so
 #endef
 
-$(eval $(call BuildPackage,bmx6))
-$(eval $(call BuildPackage,bmx6-uci-config))
-$(eval $(call BuildPackage,bmx6-json))
-$(eval $(call BuildPackage,bmx6-sms))
-#$(eval $(call BuildPackage,bmx6-quagga))
-$(eval $(call BuildPackage,bmx6-table))
+#$(eval $(call BuildPackage,bmx6))
+#$(eval $(call BuildPackage,bmx6-uci-config))
+#$(eval $(call BuildPackage,bmx6-json))
+#$(eval $(call BuildPackage,bmx6-sms))
+##$(eval $(call BuildPackage,bmx6-quagga))
+#$(eval $(call BuildPackage,bmx6-table))
