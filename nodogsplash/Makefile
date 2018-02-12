@@ -55,4 +55,4 @@ define Package/nodogsplash/conffiles
 /etc/nodogsplash/nodogsplash.conf
 endef
 
-$(eval $(call BuildPackage,nodogsplash))
+#$(eval $(call BuildPackage,nodogsplash))
