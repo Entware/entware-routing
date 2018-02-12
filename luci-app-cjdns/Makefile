@@ -51,4 +51,4 @@ define Package/luci-app-cjdns/install
 	$(CP) ./luasrc/* $(1)/usr/lib/lua/luci
 endef
 
-$(eval $(call BuildPackage,luci-app-cjdns))
+#$(eval $(call BuildPackage,luci-app-cjdns))
