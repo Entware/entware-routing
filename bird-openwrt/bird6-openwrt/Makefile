@@ -99,4 +99,4 @@ define Package/$(luci)/install
 	$(CP) ./src/view/* $(1)/usr/lib/lua/luci/view/$(BIRD)/
 endef
 
-$(eval $(call BuildPackage,$(luci)))
+#$(eval $(call BuildPackage,$(luci)))
