@@ -94,6 +94,6 @@ define Package/luci-lib-dracula/install
 	$(CP) ./dracula/* $(1)/www/luci-static/resources/dracula/
 endef
 
-$(eval $(call BuildPackage,luci-app-bmx6))
-$(eval $(call BuildPackage,luci-lib-jquery-1-4))
-$(eval $(call BuildPackage,luci-lib-dracula))
+#$(eval $(call BuildPackage,luci-app-bmx6))
+#$(eval $(call BuildPackage,luci-lib-jquery-1-4))
+#$(eval $(call BuildPackage,luci-lib-dracula))
