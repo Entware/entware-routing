@@ -79,4 +79,4 @@ define Package/batctl/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/batctl $(1)/usr/sbin/
 endef
 
-$(eval $(call BuildPackage,batctl))
+#$(eval $(call BuildPackage,batctl))
