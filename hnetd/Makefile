@@ -155,9 +155,9 @@ define Package/hnetd-$(BUILD_VARIANT)/postinst
 }
 endef
 
-$(eval $(call BuildPackage,hnetd-nossl))
-$(eval $(call BuildPackage,hnetd-openssl))
-$(eval $(call BuildPackage,hnet-full))
-$(eval $(call BuildPackage,hnet-full-secure))
-$(eval $(call BuildPackage,hnet-full-l2tp))
-$(eval $(call BuildPackage,luci-app-hnet))
+#$(eval $(call BuildPackage,hnetd-nossl))
+#$(eval $(call BuildPackage,hnetd-openssl))
+#$(eval $(call BuildPackage,hnet-full))
+#$(eval $(call BuildPackage,hnet-full-secure))
+#$(eval $(call BuildPackage,hnet-full-l2tp))
+#$(eval $(call BuildPackage,luci-app-hnet))
