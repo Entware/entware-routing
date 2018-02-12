@@ -59,5 +59,5 @@ define Package/luci-app-bmx7/install
 	chmod 755 $(1)/www/cgi-bin/bmx7-info
 endef
 
-$(eval $(call BuildPackage,luci-app-bmx7))
+#$(eval $(call BuildPackage,luci-app-bmx7))
 
