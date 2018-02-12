@@ -15,7 +15,7 @@ PKG_SOURCE:=$(PKG_VERSION).tar.gz
 
 # Latest release
 PKG_SOURCE_URL:=https://github.com/DanielAdolfsson/ndppd/archive
-PKG_MD5SUM:=1391c063db64b47541e58da12e5ae60d
+PKG_HASH:=e92292f326cbd5f96f277c753ee4b149b1d30d3f3e3fc4eb370b3704793771a7
 PKG_LICENSE:=GPL-3.0+
 
 # Development snapshot
