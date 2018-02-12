@@ -110,5 +110,5 @@ define Package/batmand/conffiles
 /etc/config/batmand
 endef
 
-$(eval $(call BuildPackage,batmand))
-$(eval $(call KernelPackage,batgat))
+#$(eval $(call BuildPackage,batmand))
+#$(eval $(call KernelPackage,batgat))
