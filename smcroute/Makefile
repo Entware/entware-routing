@@ -12,8 +12,8 @@ PKG_RELEASE:=2
 PKG_LICENSE:=GPL-2.0+
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:=ftp://troglobit.com/smcroute/
-PKG_HASH:=66fd32dc66b5d32670918205a94c4f2ac8c56741486326922e4d1a92f628db48
+PKG_SOURCE_URL:=https://github.com/troglobit/smcroute/releases/download/$(PKG_VERSION)
+PKG_MD5SUM:=cbf478e52ab9ae411adca41b9d22f68a
 
 PKG_FIXUP:=autoreconf
 
