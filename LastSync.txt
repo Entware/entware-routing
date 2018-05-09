@@ -1,7 +1,8 @@
-commit dabd5842b4bd7c9506cb6b8f9f4df0fa2ca28523
-Author: Alexander Krupenkin <mail@akru.me>
-Date:   Wed Dec 20 15:10:14 2017 +0300
+commit ae4dda6dada941c58d192b93d1b1f895bf268fd7
+Merge: ba5d2fc 2098770
+Author: Jo-Philipp Wich <jo@mein.io>
+Date:   Sat May 5 19:40:44 2018 +0200
 
-    cjdns: update to version 0.20
+    Merge pull request #372 from ldir-EDB0/dropminiupnpd
     
-    Signed-off-by: Alexander Krupenkin <mail@akru.me>
+    miniupnpd: drop from repo
