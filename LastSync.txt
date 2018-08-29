@@ -1,8 +1,8 @@
-commit ae4dda6dada941c58d192b93d1b1f895bf268fd7
-Merge: ba5d2fc 2098770
-Author: Jo-Philipp Wich <jo@mein.io>
-Date:   Sat May 5 19:40:44 2018 +0200
+commit b6efcd5cba7bda9afe903e7bfadc2d4ac23fd881
+Merge: f18bdea 0b21cb7
+Author: Moritz Warning <moritzwarning@web.de>
+Date:   Tue Aug 28 10:47:37 2018 +0200
 
-    Merge pull request #372 from ldir-EDB0/dropminiupnpd
+    Merge pull request #405 from bluewavenet/nodogsplash-3.1.0
     
-    miniupnpd: drop from repo
+    nodogsplash: Release 3.1.0
