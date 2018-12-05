@@ -1,8 +1,8 @@
-commit b6efcd5cba7bda9afe903e7bfadc2d4ac23fd881
-Merge: f18bdea 0b21cb7
-Author: Moritz Warning <moritzwarning@web.de>
-Date:   Tue Aug 28 10:47:37 2018 +0200
+commit 3d97690ba39af930b6456ef9901d5037ae0e11eb
+Merge: 2681019 4167ad2
+Author: Simon Wunderlich <sw@simonwunderlich.de>
+Date:   Thu Nov 15 10:12:33 2018 +0100
 
-    Merge pull request #405 from bluewavenet/nodogsplash-3.1.0
+    Merge pull request #427 from ecsv/batadv-2018.4
     
-    nodogsplash: Release 3.1.0
+    batman-adv 2018.4
