@@ -1,0 +1,11 @@
+--- a/Makefile.inc	2017-06-06 13:17:26.000000000 +0300
++++ b/Makefile.inc	2018-09-28 20:07:16.816252857 +0300
+@@ -128,7 +128,7 @@
+ DOCDIR_OLSRD ?= $(DOCDIR)/$(EXENAME)
+ 
+ 
+-CPPFLAGS  = -I$(TOPDIR)/src -I$(TOPDIR)/lib -I$(TOPDIR)/lib/pud/nmealib/include -I$(TOPDIR)/lib/pud/wireformat/include
++CPPFLAGS  = -I$(TOPDIR)/src -I$(TOPDIR)/lib -I$(TOPDIR)/lib/pud/nmealib/include -I$(TOPDIR)/lib/pud/wireformat/include -I$(STAGING_DIR)/opt/include
+ 
+ # include OS specific compiler settings
+ -include $(TOPDIR)/make/Makefile.$(OS).compiler

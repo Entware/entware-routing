@@ -1,0 +1,55 @@
+--- a/lib/quagga/src/quagga.h	2017-06-06 13:17:26.000000000 +0300
++++ b/lib/quagga/src/quagga.h	2018-09-28 21:07:42.673579926 +0300
+@@ -55,7 +55,7 @@
+ 
+ /* Zebra socket */
+ #ifndef ZEBRA_SOCKPATH
+-#define ZEBRA_SOCKPATH "/var/run/quagga/zserv.api"
++#define ZEBRA_SOCKPATH "/opt/var/run/quagga/zserv.api"
+ #endif /* ZEBRA_SOCKPATH */
+ 
+ /* Quagga plugin flags */
+--- a/lib/secure/src/olsrd_secure.h	2017-06-06 13:17:26.000000000 +0300
++++ b/lib/secure/src/olsrd_secure.h	2018-09-28 21:06:28.556368953 +0300
+@@ -54,7 +54,7 @@
+ 
+ #include "hashing.h"
+ 
+-#define KEYFILE "/etc/olsrd.d/olsrd_secure_key"
++#define KEYFILE "/opt/etc/olsrd.d/olsrd_secure_key"
+ 
+ /* Schemes */
+ #define ONE_CHECKSUM          1
+--- a/src/defs.h	2017-06-06 13:17:26.000000000 +0300
++++ b/src/defs.h	2018-09-28 21:05:34.355483408 +0300
+@@ -69,7 +69,7 @@
+ 
+ #ifndef OLSRD_GLOBAL_CONF_FILE
+ #define OLSRD_CONF_FILE_NAME	"olsrd.conf"
+-#define OLSRD_GLOBAL_CONF_FILE	"/etc/olsrd/" OLSRD_CONF_FILE_NAME
++#define OLSRD_GLOBAL_CONF_FILE	"/opt/etc/olsrd/" OLSRD_CONF_FILE_NAME
+ #endif /* OLSRD_GLOBAL_CONF_FILE */
+ 
+ #define	MAXMESSAGESIZE		1500    /* max broadcast size */
+--- a/src/lock_file.c	2017-06-06 13:17:26.000000000 +0300
++++ b/src/lock_file.c	2018-09-28 21:09:19.471161515 +0300
+@@ -55,7 +55,7 @@
+ #if defined __ANDROID__
+   #define DEFAULT_LOCKFILE_PREFIX "/data/local/olsrd"
+ #elif defined linux || defined __FreeBSD__ || defined __NetBSD__ || defined __OpenBSD__
+-  #define DEFAULT_LOCKFILE_PREFIX "/var/run/olsrd"
++  #define DEFAULT_LOCKFILE_PREFIX "/opt/var/lock/olsrd"
+ #elif defined _WIN32
+   #define DEFAULT_LOCKFILE_PREFIX "C:\\olsrd"
+ #else /* defined _WIN32 */
+--- a/src/olsr_cfg.h	2017-06-06 13:17:26.000000000 +0300
++++ b/src/olsr_cfg.h	2018-09-28 21:10:24.960231584 +0300
+@@ -109,7 +109,7 @@
+ #define DEF_SMART_GW_ALWAYS_REMOVE_SERVER_TUNNEL  false
+ #define DEF_GW_USE_COUNT     1
+ #define DEF_GW_TAKEDOWN_PERCENTAGE 25
+-#define DEF_GW_EGRESS_FILE    "/var/run/olsrd-sgw-egress.conf"
++#define DEF_GW_EGRESS_FILE    "/opt/var/run/olsrd-sgw-egress.conf"
+ #define DEF_GW_EGRESS_FILE_PERIOD 5000
+ #define DEF_GW_OFFSET_TABLES 90
+ #define DEF_GW_OFFSET_RULES  0
