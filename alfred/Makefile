@@ -8,9 +8,9 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=alfred
-PKG_VERSION:=2018.2
-PKG_RELEASE:=1
-PKG_HASH:=2bbe9c4fc19a6529c40f7c872406fad8070d145ede970806bd2194e07fba8018
+PKG_VERSION:=2018.4
+PKG_RELEASE:=0
+PKG_HASH:=8d6595201d5d21b4e3824d408dc9ed705789af1d8831692efa8ffe69a3e1cc58
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://downloads.open-mesh.org/batman/releases/batman-adv-$(PKG_VERSION)
@@ -59,7 +59,8 @@ MAKE_ALFRED_FLAGS=\
 	CONFIG_ALFRED_GPSD=$(if $(CONFIG_PACKAGE_ALFRED_GPSD),y,n) \
 	CONFIG_ALFRED_CAPABILITIES=n \
         LIBNL_NAME="libnl-tiny" \
-        LIBNL_GENL_NAME="libnl-tiny"
+        LIBNL_GENL_NAME="libnl-tiny" \
+        REVISION="openwrt-$(PKG_VERSION)-$(PKG_RELEASE)"
 
 TARGET_CFLAGS  += -ffunction-sections -fdata-sections -flto
 TARGET_LDFLAGS += -Wl,--gc-sections -fuse-linker-plugin
