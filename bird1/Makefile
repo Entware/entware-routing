@@ -8,7 +8,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bird1
 PKG_VERSION:=1.6.4
-PKG_RELEASE:=1
+PKG_RELEASE:=1a
 
 PKG_SOURCE:=bird-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://bird.network.cz/pub/bird
@@ -192,8 +192,8 @@ define Package/bird1-ipv$(2)/install
 	$(INSTALL_BIN)  $$(PKG_BUILD_DIR)/bird$(2) $$(1)/opt/sbin/
 	$(INSTALL_DIR)  $$(1)/opt/etc
 	$(INSTALL_DATA) ./files/bird$(2).conf $$(1)/opt/etc/
-#	$(INSTALL_DIR)  $$(1)/etc/init.d
-#	$(INSTALL_BIN)  ./files/bird$(2).init $$(1)/etc/init.d/bird$(2)
+	$(INSTALL_DIR)  $$(1)/opt/etc/init.d
+	$(INSTALL_BIN)  ./files/S04bird1-ipv$(2) $$(1)/opt/etc/init.d/
 
 endef
 
