@@ -1,8 +1,8 @@
-commit 3d97690ba39af930b6456ef9901d5037ae0e11eb
-Merge: 2681019 4167ad2
+commit 34e4913b57281a010c7d88087ee559905159ffa1
+Merge: 2d31531 e291423
 Author: Simon Wunderlich <sw@simonwunderlich.de>
-Date:   Thu Nov 15 10:12:33 2018 +0100
+Date:   Fri Feb 22 19:30:34 2019 +0100
 
-    Merge pull request #427 from ecsv/batadv-2018.4
+    Merge pull request #448 from SvenRoederer/patch-1
     
-    batman-adv 2018.4
+    batctl: fix wrong binary-name for batctl-default
