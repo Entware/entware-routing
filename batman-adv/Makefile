@@ -97,4 +97,4 @@ define KernelPackage/batman-adv/install
 	$(CP) ./files/. $(1)/
 endef
 
-$(eval $(call KernelPackage,batman-adv))
+#$(eval $(call KernelPackage,batman-adv))

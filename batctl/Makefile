@@ -221,6 +221,6 @@ define Package/batctl-full/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/batctl $(1)/usr/libexec/batctl-full
 endef
 
-$(eval $(call BuildPackage,batctl-default))
-$(eval $(call BuildPackage,batctl-tiny))
-$(eval $(call BuildPackage,batctl-full))
+#$(eval $(call BuildPackage,batctl-default))
+#$(eval $(call BuildPackage,batctl-tiny))
+#$(eval $(call BuildPackage,batctl-full))
