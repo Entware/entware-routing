@@ -180,7 +180,7 @@ endef
 define Package/olsrd/install
 #	$(INSTALL_DIR) $(1)/lib/functions
 #	$(INSTALL_DATA) ./files/olsrd.init $(1)/lib/functions/olsrd.sh
-	$(INSTALL_DIR) $(1)/opt/etc/olsrd
+#	$(INSTALL_DIR) $(1)/opt/etc/olsrd
 #	$(INSTALL_DATA) ./files/olsrd.config $(1)/etc/config/olsrd
 #	$(INSTALL_DATA) ./files/olsrd6.config $(1)/etc/config/olsrd6
 	$(INSTALL_DIR) $(1)/opt/sbin
