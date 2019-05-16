@@ -1,8 +1,16 @@
-commit 34e4913b57281a010c7d88087ee559905159ffa1
-Merge: 2d31531 e291423
-Author: Simon Wunderlich <sw@simonwunderlich.de>
-Date:   Fri Feb 22 19:30:34 2019 +0100
+commit 040b8e875070831bb8b40b627ff026f306ef8cf6
+Author: Rob White <rob@blue-wave.net>
+Date:   Tue May 7 21:38:40 2019 +0100
 
-    Merge pull request #448 from SvenRoederer/patch-1
+    nodogsplash: Release v3.3.2-1 (#468)
     
-    batctl: fix wrong binary-name for batctl-default
+    Maintainer: Moritz Warning <moritzwarning@web.de>
+    
+    Compiled and tested on snapshot SDK mips_24kc and arm_cortex-a5_neon-vfpv4/
+    
+      * Fix Issue introduced in v3.3.0 with the addition of Improvements towards usable IPv6 support, that caused CPD on client devices to fail with "Too Many Redirects" error. NDS now terminates gracefully with a console error if fasremoteip is set AND fasport=80  [bluewavenet]
+      * Validate fasremoteip to ensure that if it is set, then it is a valid dotted format IPv4 address  [bluewavenet]
+      * Numerous Documentation updates  [bluewavenet]
+      * Fix to Known Issue on OpenWrt >18.x.x with v3.3.1. This was caused by misconfigured Makefile for libmicrohttpd; this has been fixed there [bluewavenet]
+    
+    Signed-off-by: Rob White <rob@blue-wave.net>
