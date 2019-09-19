@@ -22,6 +22,7 @@ proto_batadv_init_config() {
 	proto_config_add_int 'hop_penalty'
 	proto_config_add_string 'isolation_mark'
 	proto_config_add_string 'log_level'
+	proto_config_add_int 'multicast_fanout'
 	proto_config_add_boolean 'multicast_mode:bool'
 	proto_config_add_boolean 'network_coding:bool'
 	proto_config_add_int 'orig_interval'
@@ -44,6 +45,7 @@ proto_batadv_setup() {
 	local hop_penalty
 	local isolation_mark
 	local log_level
+	local multicast_fanout
 	local multicast_mode
 	local network_coding
 	local orig_interval
@@ -61,6 +63,7 @@ proto_batadv_setup() {
 	json_get_vars hop_penalty
 	json_get_vars isolation_mark
 	json_get_vars log_level
+	json_get_vars multicast_fanout
 	json_get_vars multicast_mode
 	json_get_vars network_coding
 	json_get_vars orig_interval
@@ -69,41 +72,42 @@ proto_batadv_setup() {
 	set_default routing_algo 'BATMAN_IV'
 
 	batctl routing_algo "$routing_algo"
-	batctl -m "$iface" interface create
+	batctl meshif "$iface" interface create
 
-	[ -n "$aggregated_ogms" ] && batctl -m "$iface" aggregation "$aggregated_ogms"
-	[ -n "$ap_isolation" ] && batctl -m "$iface" ap_isolation "$ap_isolation"
-	[ -n "$bonding" ] && batctl -m "$iface" bonding "$bonding"
-	[ -n "$bridge_loop_avoidance" ] &&  batctl -m "$iface" bridge_loop_avoidance "$bridge_loop_avoidance" 2>&-
-	[ -n "$distributed_arp_table" ] && batctl -m "$iface" distributed_arp_table "$distributed_arp_table" 2>&-
-	[ -n "$fragmentation" ] && batctl -m "$iface" fragmentation "$fragmentation"
+	[ -n "$aggregated_ogms" ] && batctl meshif "$iface" aggregation "$aggregated_ogms"
+	[ -n "$ap_isolation" ] && batctl meshif "$iface" ap_isolation "$ap_isolation"
+	[ -n "$bonding" ] && batctl meshif "$iface" bonding "$bonding"
+	[ -n "$bridge_loop_avoidance" ] &&  batctl meshif "$iface" bridge_loop_avoidance "$bridge_loop_avoidance" 2>&-
+	[ -n "$distributed_arp_table" ] && batctl meshif "$iface" distributed_arp_table "$distributed_arp_table" 2>&-
+	[ -n "$fragmentation" ] && batctl meshif "$iface" fragmentation "$fragmentation"
 
 	case "$gw_mode" in
 	server)
 		if [ -n "$gw_bandwidth" ]; then
-			batctl -m "$iface" gw_mode "server" "$gw_bandwidth"
+			batctl meshif "$iface" gw_mode "server" "$gw_bandwidth"
 		else
-			batctl -m "$iface" gw_mode "server"
+			batctl meshif "$iface" gw_mode "server"
 		fi
 		;;
 	client)
 		if [ -n "$gw_sel_class" ]; then
-			batctl -m "$iface" gw_mode "client" "$gw_sel_class"
+			batctl meshif "$iface" gw_mode "client" "$gw_sel_class"
 		else
-			batctl -m "$iface" gw_mode "client"
+			batctl meshif "$iface" gw_mode "client"
 		fi
 		;;
 	*)
-		batctl -m "$iface" gw_mode "off"
+		batctl meshif "$iface" gw_mode "off"
 		;;
 	esac
 
-	[ -n "$hop_penalty" ] && batctl -m "$iface" hop_penalty "$hop_penalty"
-	[ -n "$isolation_mark" ] && batctl -m "$iface" isolation_mark "$isolation_mark"
-	[ -n "$multicast_mode" ] && batctl -m "$iface" multicast_mode "$multicast_mode" 2>&-
-	[ -n "$network_coding" ] && batctl -m "$iface" network_coding "$network_coding" 2>&-
-	[ -n "$log_level" ] && batctl -m "$iface" loglevel "$log_level" 2>&-
-	[ -n "$orig_interval" ] && batctl -m "$iface" orig_interval "$orig_interval"
+	[ -n "$hop_penalty" ] && batctl meshif "$iface" hop_penalty "$hop_penalty"
+	[ -n "$isolation_mark" ] && batctl meshif "$iface" isolation_mark "$isolation_mark"
+	[ -n "$multicast_fanout" ] && batctl meshif "$iface" multicast_fanout "$multicast_fanout"
+	[ -n "$multicast_mode" ] && batctl meshif "$iface" multicast_mode "$multicast_mode" 2>&-
+	[ -n "$network_coding" ] && batctl meshif "$iface" network_coding "$network_coding" 2>&-
+	[ -n "$log_level" ] && batctl meshif "$iface" loglevel "$log_level" 2>&-
+	[ -n "$orig_interval" ] && batctl meshif "$iface" orig_interval "$orig_interval"
 
 	proto_init_update "$iface" 1
 	proto_send_update "$config"
@@ -113,7 +117,7 @@ proto_batadv_teardown() {
 	local config="$1"
 	local iface="$config"
 
-	batctl -m "$iface" interface destroy
+	batctl meshif "$iface" interface destroy
 }
 
 add_protocol batadv
