@@ -1,16 +1,31 @@
-commit 040b8e875070831bb8b40b627ff026f306ef8cf6
+commit def3cd50d88b514cdafb8f956b228afdd8bdef08
 Author: Rob White <rob@blue-wave.net>
-Date:   Tue May 7 21:38:40 2019 +0100
+Date:   Sat Sep 14 21:21:11 2019 +0100
 
-    nodogsplash: Release v3.3.2-1 (#468)
+    nodogsplash: Release 4.2.0 (#513)
     
     Maintainer: Moritz Warning <moritzwarning@web.de>
     
-    Compiled and tested on snapshot SDK mips_24kc and arm_cortex-a5_neon-vfpv4/
+    Compiled and tested on snapshot SDK mips_24kc and arm_cortex-a7_neon-vfpv4
     
-      * Fix Issue introduced in v3.3.0 with the addition of Improvements towards usable IPv6 support, that caused CPD on client devices to fail with "Too Many Redirects" error. NDS now terminates gracefully with a console error if fasremoteip is set AND fasport=80  [bluewavenet]
-      * Validate fasremoteip to ensure that if it is set, then it is a valid dotted format IPv4 address  [bluewavenet]
-      * Numerous Documentation updates  [bluewavenet]
-      * Fix to Known Issue on OpenWrt >18.x.x with v3.3.1. This was caused by misconfigured Makefile for libmicrohttpd; this has been fixed there [bluewavenet]
+    This release adds significant functionality in the form of capturing the client User-Agent string and passing to both PreAuth and BinAuth scripts. Compatibility is maintained with previous versions.
+    
+    Changelog since last OpenWrt release:
+    
+     * BinAuth - Send User Agent string and client-ip to the binauth script [bluewavenet]
+     * BinAuth - Update the two example BinAuth scripts showing use of passed arguments [bluewavenet]
+     * Documentation - Update BinAuth section [bluewavenet]
+     * PreAuth - Send User Agent string to the preauth script [bluewavenet]
+     * PreAuth - Update the example PreAuth script showing use of passed arguments [bluewavenet]
+     * Documentation - Update PreAuth section [bluewavenet]
+     * BinAuth - Send redir variable to the binauth script, allow passing of custom variable payload [bluewavenet]
+     * BinAuth - Provide two example BinAuth scripts [bluewavenet]
+     * Documentation - Rework Binauth section plus numerous minor updates [bluewavenet]
+     * Deprecate RedirectURL config option as it is rendered obsolete by many CPD implementations, use FAS instead [bluewavenet]
+     * Numerous minor updates to html, css and script files [bluewavenet]
+     * Fix bug - faskey, exit gracefully if not set and fas_secure_enabled = 2 [bluewavenet]
+     * Fix bug - Systemd, Do not set debug level in nodogsplash.service [bluewavenet]
+     * Fix bug - ndsctl, delete lock file if NDS is not started [bluewavenet]
     
     Signed-off-by: Rob White <rob@blue-wave.net>
+
