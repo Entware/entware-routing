@@ -1,6 +1,6 @@
 --- a/src/ndppd.cc
 +++ b/src/ndppd.cc
-@@ -155,7 +155,7 @@
+@@ -205,7 +205,7 @@ int main(int argc, char* argv[], char* e
      signal(SIGINT, exit_ndppd);
      signal(SIGTERM, exit_ndppd);
  
