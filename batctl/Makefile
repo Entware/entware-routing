@@ -9,9 +9,9 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=batctl
 
-PKG_VERSION:=2019.1
+PKG_VERSION:=2019.3
 PKG_RELEASE:=0
-PKG_HASH:=e82d05f058d8b799d17ce6063e1bf5b83ef1fe42a0867b3e2e39545177469793
+PKG_HASH:=2bd93fa14925a8dc63a67e64266c8ccd2fa3ac44b10253d93e6f8a630350070c
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://downloads.open-mesh.org/batman/releases/batman-adv-$(PKG_VERSION)
@@ -88,18 +88,11 @@ TARGET_LDFLAGS += -Wl,--gc-sections
 TARGET_CFLAGS  += -flto
 TARGET_LDFLAGS += -fuse-linker-plugin
 
-MAKE_BATCTL_ENV += \
-        CPPFLAGS="$(TARGET_CPPFLAGS)" \
-        CFLAGS="$(TARGET_CFLAGS)" \
-        LDFLAGS="$(TARGET_LDFLAGS)" \
+MAKE_VARS += \
         LIBNL_NAME="libnl-tiny" \
         LIBNL_GENL_NAME="libnl-tiny"
 
-MAKE_BATCTL_ARGS += \
-        REVISION="$(PKG_BATCTL_SHORTREV)" \
-        CC="$(TARGET_CC)" \
-        DESTDIR="$(PKG_INSTALL_DIR)" \
-        batctl install \
+MAKE_FLAGS += \
         REVISION="openwrt-$(PKG_VERSION)-$(PKG_RELEASE)"
 
 config-n := \
@@ -112,6 +105,7 @@ config-n := \
 	claimtable \
 	dat_cache \
 	distributed_arp_table \
+	elp_interval \
 	event \
 	fragmentation \
 	gateways \
@@ -119,9 +113,9 @@ config-n := \
 	hop_penalty \
 	interface \
 	isolation_mark \
-	log \
 	loglevel \
 	mcast_flags \
+	multicast_fanout \
 	multicast_forceflood \
 	multicast_mode \
 	nc_nodes \
@@ -133,6 +127,7 @@ config-n := \
 	routing_algo \
 	statistics \
 	tcpdump \
+	throughput_override \
 	throughputmeter \
 	traceroute \
 	transglobal \
@@ -145,17 +140,20 @@ config-settings := \
 	bonding \
 	bridge_loop_avoidance \
 	distributed_arp_table \
+	elp_interval \
 	fragmentation \
 	gw_mode \
 	hop_penalty \
 	interface \
 	isolation_mark \
 	loglevel \
+	multicast_fanout \
 	multicast_forceflood \
 	multicast_mode \
 	network_coding \
 	orig_interval \
 	routing_algo \
+	throughput_override \
 
 config-tables := \
 	backbonetable \
@@ -172,7 +170,6 @@ config-tables := \
 
 config-tools := \
 	event \
-	log \
 	ping \
 	tcpdump \
 	throughputmeter \
@@ -218,10 +215,7 @@ $(call ConfigVars,n)$(call ConfigVars,y)
 endef
 $(eval $(call shexport,batctl_config))
 
-define Build/Compile
-	$(MAKE_BATCTL_ENV) $(MAKE) -C "$(PKG_BUILD_DIR)" $(MAKE_BATCTL_ARGS) \
-		$$$$$(call shvar,batctl_config)
-endef
+MAKE_FLAGS += $$$$$(call shvar,batctl_config)
 
 define Package/batctl-tiny/install
 	$(INSTALL_DIR) $(1)/usr/libexec
