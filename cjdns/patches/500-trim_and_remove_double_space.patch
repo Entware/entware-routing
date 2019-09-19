@@ -1,7 +1,7 @@
 --- a/node_build/make.js
 +++ b/node_build/make.js
-@@ -26,7 +26,8 @@
- // ['linux','darwin','sunos','win32','freebsd','openbsd']
+@@ -26,7 +26,8 @@ var TestRunner = require('./TestRunner')
+ // ['linux','darwin','sunos','win32','freebsd','openbsd','netbsd']
  var SYSTEM = process.env['SYSTEM'] || process.platform;
  var GCC = process.env['CC'];
 -var CFLAGS = process.env['CFLAGS'];
@@ -9,4 +9,4 @@
 +process.env['CFLAGS']=CFLAGS;
  var LDFLAGS = process.env['LDFLAGS'];
  
- var NO_MARCH_FLAG = ['ppc', 'ppc64'];
+ var NO_MARCH_FLAG = ['arm', 'ppc', 'ppc64'];

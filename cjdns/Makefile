@@ -55,7 +55,7 @@ define Package/cjdns-tests
 	TITLE:=cjdns test cases
 	URL:=https://github.com/cjdelisle/cjdns
 	MAINTAINER:=Lars Gierth <larsg@systemli.org>
-	DEPENDS:=+libpthread +librt
+	DEPENDS:=+libpthread +librt @!arc
 endef
 
 define Package/cjdns-test/description
@@ -85,7 +85,7 @@ define Build/Compile
 	CFLAGS="$(TARGET_CFLAGS) -U_FORTIFY_SOURCE" \
 	LDFLAGS="$(TARGET_LDFLAGS)" \
 	SYSTEM="linux" \
-	TARGET_ARCH="$(CONFIG_ARCH)" \
+	TARGET_ARCH=$(CONFIG_ARCH) \
 	SSP_SUPPORT="$(CONFIG_SSP_SUPPORT)" \
 	GYP_ADDITIONAL_ARGS="-f make-linux" \
 	CJDNS_BUILD_TMPDIR="$(PKG_BUILD_DIR)/tmp" \
