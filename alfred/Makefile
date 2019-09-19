@@ -8,17 +8,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=alfred
-PKG_VERSION:=2019.1
-PKG_RELEASE:=0
-PKG_HASH:=7252a4d137a4cd38946e38b0c462487f09dd43fa18823c90d180ea7fce2b515b
+PKG_VERSION:=2019.3
+PKG_RELEASE:=2
+PKG_HASH:=a4c37920de497701680abb55c49cdcd11e4e7135e0e7e79259c35492a3df4766
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://downloads.open-mesh.org/batman/releases/batman-adv-$(PKG_VERSION)
 PKG_LICENSE:=GPL-2.0
 
 include $(INCLUDE_DIR)/package.mk
-
-init-y := alfred
 
 define Package/alfred
   URL:=https://www.open-mesh.org/
@@ -54,7 +52,7 @@ define Package/alfred/config
 	source "$(SOURCE)/Config.in"
 endef
 
-MAKE_ALFRED_FLAGS=\
+MAKE_FLAGS += \
 	CONFIG_ALFRED_VIS=$(if $(CONFIG_PACKAGE_ALFRED_VIS),y,n) \
 	CONFIG_ALFRED_GPSD=$(if $(CONFIG_PACKAGE_ALFRED_GPSD),y,n) \
 	CONFIG_ALFRED_CAPABILITIES=n \
@@ -64,12 +62,6 @@ MAKE_ALFRED_FLAGS=\
 
 TARGET_CFLAGS  += -ffunction-sections -fdata-sections -flto
 TARGET_LDFLAGS += -Wl,--gc-sections -fuse-linker-plugin
-
-define Build/Compile
-	CFLAGS="$(TARGET_CPPFLAGS) $(TARGET_CFLAGS)" \
-	LDFLAGS="$(TARGET_LDFLAGS)" \
-	$(MAKE) -C $(PKG_BUILD_DIR) $(MAKE_FLAGS) $(MAKE_ALFRED_FLAGS) all
-endef
 
 define Package/alfred/install
 	$(INSTALL_DIR) $(1)/usr/sbin
