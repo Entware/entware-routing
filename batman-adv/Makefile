@@ -9,13 +9,14 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=batman-adv
 
-PKG_VERSION:=2019.3
+PKG_VERSION:=2019.5
 PKG_RELEASE:=0
-PKG_HASH:=3454dc8bd6cb264e2decda1b99ef3f837535ed33802abc6c39551c181d3984ce
+PKG_HASH:=29fd11b07842f40fee1782bf7ea512278fc4e483bac3c52cf74f8af0f6fe28ec
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://downloads.open-mesh.org/batman/releases/batman-adv-$(PKG_VERSION)
-PKG_LICENSE:=GPL-2.0
+PKG_LICENSE:=GPL-2.0-only MIT
+PKG_LICENSE_FILES:=LICENSES/preferred/GPL-2.0 LICENSES/preferred/MIT
 PKG_EXTMOD_SUBDIRS=net/batman-adv
 
 STAMP_CONFIGURED_DEPENDS := $(STAGING_DIR)/usr/include/mac80211-backport/backport/autoconf.h
@@ -75,7 +76,7 @@ NOSTDINC_FLAGS = \
 	-I$(PKG_BUILD_DIR)/include/ \
 	-include backport/backport.h \
 	-include $(PKG_BUILD_DIR)/compat-hacks.h \
-	-DBATADV_SOURCE_VERSION=\\\"openwrt-$(PKG_VERSION)-$(PKG_RELEASE)\\\"
+	-DBATADV_SOURCE_VERSION=\\\"$(PKG_VERSION)-openwrt-$(PKG_RELEASE)\\\"
 
 COMPAT_SOURCES = \
 	$(if $(CONFIG_BATMAN_ADV_MCAST),../../compat-sources/net/core/skbuff.o,) \
