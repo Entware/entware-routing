@@ -1,31 +1,9 @@
-commit def3cd50d88b514cdafb8f956b228afdd8bdef08
-Author: Rob White <rob@blue-wave.net>
-Date:   Sat Sep 14 21:21:11 2019 +0100
+commit 4f945bba1636aecfa18d47877ba30e2716b759c1 (HEAD -> master, origin/master, origin/HEAD)
+Author: Toke Høiland-Jørgensen <toke@toke.dk>
+Date:   Sat Dec 21 23:18:36 2019 +0100
 
-    nodogsplash: Release 4.2.0 (#513)
+    bird2: Update to v2.0.7 (#516)
     
-    Maintainer: Moritz Warning <moritzwarning@web.de>
+    Bump release to upstream v2.0.7
     
-    Compiled and tested on snapshot SDK mips_24kc and arm_cortex-a7_neon-vfpv4
-    
-    This release adds significant functionality in the form of capturing the client User-Agent string and passing to both PreAuth and BinAuth scripts. Compatibility is maintained with previous versions.
-    
-    Changelog since last OpenWrt release:
-    
-     * BinAuth - Send User Agent string and client-ip to the binauth script [bluewavenet]
-     * BinAuth - Update the two example BinAuth scripts showing use of passed arguments [bluewavenet]
-     * Documentation - Update BinAuth section [bluewavenet]
-     * PreAuth - Send User Agent string to the preauth script [bluewavenet]
-     * PreAuth - Update the example PreAuth script showing use of passed arguments [bluewavenet]
-     * Documentation - Update PreAuth section [bluewavenet]
-     * BinAuth - Send redir variable to the binauth script, allow passing of custom variable payload [bluewavenet]
-     * BinAuth - Provide two example BinAuth scripts [bluewavenet]
-     * Documentation - Rework Binauth section plus numerous minor updates [bluewavenet]
-     * Deprecate RedirectURL config option as it is rendered obsolete by many CPD implementations, use FAS instead [bluewavenet]
-     * Numerous minor updates to html, css and script files [bluewavenet]
-     * Fix bug - faskey, exit gracefully if not set and fas_secure_enabled = 2 [bluewavenet]
-     * Fix bug - Systemd, Do not set debug level in nodogsplash.service [bluewavenet]
-     * Fix bug - ndsctl, delete lock file if NDS is not started [bluewavenet]
-    
-    Signed-off-by: Rob White <rob@blue-wave.net>
-
+    Signed-off-by: Toke Høiland-Jørgensen <toke@toke.dk>
