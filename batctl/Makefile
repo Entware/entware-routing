@@ -9,13 +9,14 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=batctl
 
-PKG_VERSION:=2019.3
+PKG_VERSION:=2019.5
 PKG_RELEASE:=0
-PKG_HASH:=2bd93fa14925a8dc63a67e64266c8ccd2fa3ac44b10253d93e6f8a630350070c
+PKG_HASH:=ffe5857a33068ec174140c154610d76d833524d840a2fc2d1a15e16686213cad
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://downloads.open-mesh.org/batman/releases/batman-adv-$(PKG_VERSION)
-PKG_LICENSE:=GPL-2.0
+PKG_LICENSE:=GPL-2.0-only ISC MIT
+PKG_LICENSE_FILES:=LICENSES/preferred/GPL-2.0 LICENSES/preferred/MIT LICENSES/deprecated/ISC
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
 
@@ -93,7 +94,7 @@ MAKE_VARS += \
         LIBNL_GENL_NAME="libnl-tiny"
 
 MAKE_FLAGS += \
-        REVISION="openwrt-$(PKG_VERSION)-$(PKG_RELEASE)"
+        REVISION="$(PKG_VERSION)-openwrt-$(PKG_RELEASE)"
 
 config-n := \
 	aggregation \
