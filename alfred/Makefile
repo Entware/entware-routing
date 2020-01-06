@@ -8,13 +8,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=alfred
-PKG_VERSION:=2019.3
-PKG_RELEASE:=2
-PKG_HASH:=a4c37920de497701680abb55c49cdcd11e4e7135e0e7e79259c35492a3df4766
+PKG_VERSION:=2019.5
+PKG_RELEASE:=0
+PKG_HASH:=8a7b6e4e1ae5826671beb683013c5ffa4a1af005bf179a42e541cf84de8fd726
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://downloads.open-mesh.org/batman/releases/batman-adv-$(PKG_VERSION)
-PKG_LICENSE:=GPL-2.0
+PKG_LICENSE:=GPL-2.0-only MIT
+PKG_LICENSE_FILES:=LICENSES/preferred/GPL-2.0 LICENSES/preferred/MIT
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -58,7 +59,7 @@ MAKE_FLAGS += \
 	CONFIG_ALFRED_CAPABILITIES=n \
         LIBNL_NAME="libnl-tiny" \
         LIBNL_GENL_NAME="libnl-tiny" \
-        REVISION="openwrt-$(PKG_VERSION)-$(PKG_RELEASE)"
+        REVISION="$(PKG_VERSION)-openwrt-$(PKG_RELEASE)"
 
 TARGET_CFLAGS  += -ffunction-sections -fdata-sections -flto
 TARGET_LDFLAGS += -Wl,--gc-sections -fuse-linker-plugin
