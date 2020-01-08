@@ -73,6 +73,10 @@ ifneq ($(CONFIG_USE_UCLIBC),)
 PKG_DO_VARS+= UCLIBC=1
 endif
 
+ifeq ($(or $(CONFIG_GCC_USE_VERSION_8),$(CONFIG_GCC_USE_VERSION_9)),y)
+TARGET_CFLAGS += -Wno-error=stringop-truncation
+endif
+
 define Build/Compile
 	$(INSTALL_DIR) $(BUILD_DIR)/$(PKG_SOURCE_VERSION)/tmp
 	(cd $(BUILD_DIR)/$(PKG_SOURCE_VERSION) && \
