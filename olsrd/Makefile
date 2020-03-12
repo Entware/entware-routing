@@ -165,6 +165,7 @@ define Package/olsrd-mod-sgwdynspeed/conffiles
 endef
 
 MAKE_FLAGS+= \
+	EXTRA_CPPFLAGS="$(TARGET_CPPFLAGS)" \
 	NO_DEBUG_MESSAGES=1 \
 	OS="linux" \
 	DESTDIR="$(PKG_INSTALL_DIR)" \
