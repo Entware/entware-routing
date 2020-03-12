@@ -1,9 +1,9 @@
-commit 4f945bba1636aecfa18d47877ba30e2716b759c1 (HEAD -> master, origin/master, origin/HEAD)
-Author: Toke Høiland-Jørgensen <toke@toke.dk>
-Date:   Sat Dec 21 23:18:36 2019 +0100
+commit 512240f48028bca1832fc79e38f3b40ba9f3b3af (HEAD -> master, origin/master, origin/HEAD)
+Merge: 196e771 e002648
+Author: Simon Wunderlich <sw@simonwunderlich.de>
+Date:   Tue Mar 10 17:08:47 2020 +0100
 
-    bird2: Update to v2.0.7 (#516)
+    Merge pull request #553 from ecsv/batadv-2020.0
     
-    Bump release to upstream v2.0.7
-    
-    Signed-off-by: Toke Høiland-Jørgensen <toke@toke.dk>
+    batman-adv 2020.0
+
