@@ -1,5 +1,5 @@
---- a/lib/quagga/src/quagga.h	2017-06-06 13:17:26.000000000 +0300
-+++ b/lib/quagga/src/quagga.h	2018-09-28 21:07:42.673579926 +0300
+--- a/lib/quagga/src/quagga.h
++++ b/lib/quagga/src/quagga.h
 @@ -55,7 +55,7 @@
  
  /* Zebra socket */
@@ -9,8 +9,8 @@
  #endif /* ZEBRA_SOCKPATH */
  
  /* Quagga plugin flags */
---- a/lib/secure/src/olsrd_secure.h	2017-06-06 13:17:26.000000000 +0300
-+++ b/lib/secure/src/olsrd_secure.h	2018-09-28 21:06:28.556368953 +0300
+--- a/lib/secure/src/olsrd_secure.h
++++ b/lib/secure/src/olsrd_secure.h
 @@ -54,7 +54,7 @@
  
  #include "hashing.h"
@@ -20,8 +20,8 @@
  
  /* Schemes */
  #define ONE_CHECKSUM          1
---- a/src/defs.h	2017-06-06 13:17:26.000000000 +0300
-+++ b/src/defs.h	2018-09-28 21:05:34.355483408 +0300
+--- a/src/defs.h
++++ b/src/defs.h
 @@ -69,7 +69,7 @@
  
  #ifndef OLSRD_GLOBAL_CONF_FILE
@@ -31,8 +31,8 @@
  #endif /* OLSRD_GLOBAL_CONF_FILE */
  
  #define	MAXMESSAGESIZE		1500    /* max broadcast size */
---- a/src/lock_file.c	2017-06-06 13:17:26.000000000 +0300
-+++ b/src/lock_file.c	2018-09-28 21:09:19.471161515 +0300
+--- a/src/lock_file.c
++++ b/src/lock_file.c
 @@ -55,7 +55,7 @@
  #if defined __ANDROID__
    #define DEFAULT_LOCKFILE_PREFIX "/data/local/olsrd"
@@ -42,8 +42,8 @@
  #elif defined _WIN32
    #define DEFAULT_LOCKFILE_PREFIX "C:\\olsrd"
  #else /* defined _WIN32 */
---- a/src/olsr_cfg.h	2017-06-06 13:17:26.000000000 +0300
-+++ b/src/olsr_cfg.h	2018-09-28 21:10:24.960231584 +0300
+--- a/src/olsr_cfg.h
++++ b/src/olsr_cfg.h
 @@ -109,7 +109,7 @@
  #define DEF_SMART_GW_ALWAYS_REMOVE_SERVER_TUNNEL  false
  #define DEF_GW_USE_COUNT     1
