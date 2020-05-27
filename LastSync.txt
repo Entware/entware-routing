@@ -1,9 +1,6 @@
-commit 512240f48028bca1832fc79e38f3b40ba9f3b3af (HEAD -> master, origin/master, origin/HEAD)
-Merge: 196e771 e002648
-Author: Simon Wunderlich <sw@simonwunderlich.de>
-Date:   Tue Mar 10 17:08:47 2020 +0100
+commit 5e4756d7e744c728ec1b83d4b588ecfe17e13881 (HEAD -> master, origin/master, origin/HEAD)
+Author: Markus Stenberg <markus.stenberg@iki.fi>
+Date:   Fri May 22 09:27:16 2020 +0300
 
-    Merge pull request #553 from ecsv/batadv-2020.0
-    
-    batman-adv 2020.0
+    ohybridproxy: Bump (.home -> .home.arpa works)
 
