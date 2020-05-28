@@ -74,7 +74,7 @@ PKG_DO_VARS+= UCLIBC=1
 endif
 
 ifeq ($(or $(CONFIG_GCC_USE_VERSION_8),$(CONFIG_GCC_USE_VERSION_9)),y)
-TARGET_CFLAGS += -Wno-error=stringop-truncation
+TARGET_CFLAGS += -Wno-error=stringop-truncation -Wno-error=cpp -Wno-error=deprecated-declarations
 endif
 
 define Build/Compile
