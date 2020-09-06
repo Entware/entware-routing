@@ -1,6 +1,9 @@
-commit 5e4756d7e744c728ec1b83d4b588ecfe17e13881 (HEAD -> master, origin/master, origin/HEAD)
-Author: Markus Stenberg <markus.stenberg@iki.fi>
-Date:   Fri May 22 09:27:16 2020 +0300
+commit b309086fa28ff3571258a7e46c57dab31f249b6d (HEAD -> master, origin/master, origin/HEAD)
+Merge: 741a6b9 5cc8e05
+Author: Moritz Warning <moritzwarning@web.de>
+Date:   Fri Aug 28 14:40:04 2020 +0200
 
-    ohybridproxy: Bump (.home -> .home.arpa works)
+    Merge pull request #605 from pmelange/olsrd-bison-3-7-1-changes
+    
+    olsrd: migrate to using bison 3.7.1
 
