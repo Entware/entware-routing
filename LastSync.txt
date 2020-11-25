@@ -1,9 +1,8 @@
-commit b309086fa28ff3571258a7e46c57dab31f249b6d (HEAD -> master, origin/master, origin/HEAD)
-Merge: 741a6b9 5cc8e05
+commit 068a0613a910a06367732b5c330fb6066b62dd87 (HEAD -> master, origin/master, origin/HEAD)
+Merge: 52be301 22a5a22
 Author: Moritz Warning <moritzwarning@web.de>
-Date:   Fri Aug 28 14:40:04 2020 +0200
+Date:   Tue Nov 10 21:45:02 2020 +0100
 
-    Merge pull request #605 from pmelange/olsrd-bison-3-7-1-changes
+    Merge pull request #619 from neheb/qg
     
-    olsrd: migrate to using bison 3.7.1
-
+    quagga: update GCC10 patch
