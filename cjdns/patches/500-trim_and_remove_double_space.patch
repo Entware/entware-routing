@@ -10,11 +10,11 @@
  var LDFLAGS = process.env['LDFLAGS'];
  
  var NO_MARCH_FLAG = ['arm', 'ppc', 'ppc64'];
-@@ -308,6 +309,7 @@
+@@ -312,6 +313,7 @@ Builder.configure({
          builder.config.libs.push(libuvLib);
          if (!android) {
              builder.config.libs.push('-lpthread');
 +            builder.config.libs.push('-lssp');
          }
-
+ 
          if (builder.config.systemName === 'win32') {
