@@ -174,6 +174,7 @@ CONFIGURE_ARGS+= \
 	--disable-ospfclient \
 	--disable-capabilities \
 	--disable-doc \
+	--disable-nhrpd \
 	$(call autoconf_bool,CONFIG_PACKAGE_quagga-libzebra,zebra) \
 	$(call autoconf_bool,CONFIG_PACKAGE_quagga-libospf,ospfd) \
 	$(call autoconf_bool,CONFIG_PACKAGE_quagga-bgpd,bgpd) \
@@ -182,11 +183,6 @@ CONFIGURE_ARGS+= \
 	$(call autoconf_bool,CONFIG_PACKAGE_quagga-ripd,ripd) \
 	$(call autoconf_bool,CONFIG_PACKAGE_quagga-ripngd,ripngd) \
 	$(call autoconf_bool,CONFIG_PACKAGE_quagga-vtysh,vtysh)
-
-ifdef CONFIG_LINUX_2_6_36
-CONFIGURE_ARGS += \
-	--disable-nhrpd
-endif
 
 MAKE_FLAGS += \
 	CFLAGS="$(TARGET_CFLAGS) -std=gnu99"
