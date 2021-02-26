@@ -1,8 +1,10 @@
-commit 068a0613a910a06367732b5c330fb6066b62dd87 (HEAD -> master, origin/master, origin/HEAD)
-Merge: 52be301 22a5a22
-Author: Moritz Warning <moritzwarning@web.de>
-Date:   Tue Nov 10 21:45:02 2020 +0100
+commit 0f1d89c2e95a428835e269b0c0e832e8675c73e8 (HEAD -> master, origin/master, origin/HEAD)
+Author: Rob White <rob@blue-wave.net>
+Date:   Mon Feb 22 12:43:13 2021 +0000
 
-    Merge pull request #619 from neheb/qg
+    opennds: Release 8.1.1
     
-    quagga: update GCC10 patch
+    This release fixes an issue where some firewall rules containing
+    the keyword "block" would cause openNDS to fail in startup.
+    
+    Signed-off-by: Rob White <rob@blue-wave.net>
