@@ -1,10 +1,10 @@
-commit 0f1d89c2e95a428835e269b0c0e832e8675c73e8 (HEAD -> master, origin/master, origin/HEAD)
-Author: Rob White <rob@blue-wave.net>
-Date:   Mon Feb 22 12:43:13 2021 +0000
+commit b38a46acd54879cd56de433a5e86c2dcf4b8b151 (HEAD -> master, origin/master, origin/HEAD)
+Author: Josef Schlehofer <pepe.schlehofer@gmail.com>
+Date:   Thu Mar 25 12:26:41 2021 +0100
 
-    opennds: Release 8.1.1
+    bird2: Makefile polishing
     
-    This release fixes an issue where some firewall rules containing
-    the keyword "block" would cause openNDS to fail in startup.
+    - Just small reodering of some rows to be more consistent with packages feed
+    - Fix deprecated SPDX License Identifier
     
-    Signed-off-by: Rob White <rob@blue-wave.net>
+    Signed-off-by: Josef Schlehofer <pepe.schlehofer@gmail.com>
