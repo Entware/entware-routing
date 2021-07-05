@@ -10,24 +10,25 @@ PKG_SOURCE_URL:=https://github.com/OLSR/OONF.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)
+PKG_MIRROR_HASH:=334047912bbeb3d49874a06cc89fcc8c07a7ee2296d056fc5f047ad51aeb21fa
 
 CMAKE_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
-CMAKE_OPTIONS=-D OONF_NO_WERROR:Bool=true \
-              -D OONF_LOGGING_LEVEL:String=debug \
-              -D OONF_NO_TESTING:Bool=true \
-              -D UCI:Bool=true \
-              -D OONF_APP_DEFAULT_CFG_HANDLER:String=uci \
-              -D OONF_STATIC_PLUGINS:String="class;clock;layer2;packet_socket;socket;stream_socket;telnet;timer;viewer;os_clock;os_fd;os_interface;os_system;nl80211_listener;layer2info;systeminfo;cfg_uciloader;cfg_compact;dlep_radio" \
-              -D OONF_LIB_GIT:String=v$(PKG_VERSION)-archive \
-              -D OONF_VERSION:String=$(PKG_VERSION) \
-              -D INSTALL_LIB_DIR:Path=lib/oonf \
-              -D INSTALL_INCLUDE_DIR:Path=include/oonf \
-              -D INSTALL_CMAKE_DIR:Path=lib/oonf \
-              -D CMAKE_PREFIX_PATH=$(STAGING_DIR)/usr
+CMAKE_OPTIONS+=-D OONF_NO_WERROR:Bool=true \
+               -D OONF_LOGGING_LEVEL:String=debug \
+               -D OONF_NO_TESTING:Bool=true \
+               -D UCI:Bool=true \
+               -D OONF_APP_DEFAULT_CFG_HANDLER:String=uci \
+               -D OONF_STATIC_PLUGINS:String="class;clock;layer2;packet_socket;socket;stream_socket;telnet;timer;viewer;os_clock;os_fd;os_interface;os_system;nl80211_listener;layer2info;systeminfo;cfg_uciloader;cfg_compact;dlep_radio" \
+               -D OONF_LIB_GIT:String=v$(PKG_VERSION)-archive \
+               -D OONF_VERSION:String=$(PKG_VERSION) \
+               -D INSTALL_LIB_DIR:Path=lib/oonf \
+               -D INSTALL_INCLUDE_DIR:Path=include/oonf \
+               -D INSTALL_CMAKE_DIR:Path=lib/oonf \
+               -D CMAKE_PREFIX_PATH=$(STAGING_DIR)/usr
 
 define Package/oonf-git/template
 	SECTION:=net
