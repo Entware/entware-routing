@@ -1,21 +1,20 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
 #
 # Copyright (C) 2009-2016 OpenWrt.org
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
 #
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=olsrd
-PKG_SOURCE_DATE:=2020-06-18
-PKG_RELEASE:=3
+PKG_SOURCE_DATE:=2021-06-12
+PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/OLSR/olsrd.git
-PKG_SOURCE_VERSION:=84400e5cf56590cd2bd5bef2d224104d1bac4252
-PKG_MIRROR_HASH:=0511743e53505107fdb38fe1b355e145cd7bc1aa409dd0a6a2815bb14b63af73
+PKG_SOURCE_VERSION:=4973feb538b5b98b9d8ac2f8f474202f6d73de78
+PKG_MIRROR_HASH:=705ff34d7ce13f59004b7fc91d852b8a6982538b58a78f4dfa552e212c1026eb
 
+PKG_MAINTAINER:=Nick Hainke <vincent@systemli.org>
 PKG_BUILD_PARALLEL:=0
 PKG_LICENSE:=BSD-3-Clause
 
@@ -55,9 +54,16 @@ define Package/olsrd-mod-dot-draw
   TITLE:=Dot topology information plugin
 endef
 
+
+define Package/olsrd-mod-filtergw
+  $(call Package/olsrd/template)
+  DEPENDS:=olsrd
+  TITLE:=Filter Gateway plugin
+endef
+
 define Package/olsrd-mod-bmf
   $(call Package/olsrd/template)
-  DEPENDS:=olsrd #+kmod-tun
+  DEPENDS:=olsrd
   TITLE:=Basic multicast forwarding plugin
 endef
 
@@ -170,7 +176,7 @@ MAKE_FLAGS+= \
 	DESTDIR="$(PKG_INSTALL_DIR)" \
 	STRIP="true" \
 	INSTALL_LIB="true" \
-	SUBDIRS="arprefresh bmf dot_draw dyn_gw dyn_gw_plain httpinfo jsoninfo netjson mdns nameservice p2pd pgraph pud quagga secure sgwdynspeed txtinfo watchdog"
+	SUBDIRS="arprefresh bmf dot_draw dyn_gw dyn_gw_plain httpinfo filtergw jsoninfo netjson mdns nameservice p2pd pgraph pud quagga secure sgwdynspeed txtinfo watchdog"
 
 define Build/Compile
 	$(call Build/Compile/Default,all)
@@ -179,8 +185,8 @@ endef
 
 define Package/olsrd/install
 #	$(INSTALL_DIR) $(1)/lib/functions
-#	$(INSTALL_DATA) ./files/olsrd.init $(1)/lib/functions/olsrd.sh
-#	$(INSTALL_DIR) $(1)/opt/etc/olsrd
+#	$(INSTALL_DATA) ./files/olsrd.sh $(1)/lib/functions/olsrd.sh
+#	$(INSTALL_DIR) $(1)/etc/config
 #	$(INSTALL_DATA) ./files/olsrd.config $(1)/etc/config/olsrd
 #	$(INSTALL_DATA) ./files/olsrd6.config $(1)/etc/config/olsrd6
 	$(INSTALL_DIR) $(1)/opt/sbin
@@ -188,13 +194,16 @@ define Package/olsrd/install
 #	$(INSTALL_DIR) $(1)/etc/init.d
 #	$(INSTALL_BIN) ./files/olsrd4.init $(1)/etc/init.d/olsrd
 #	$(INSTALL_BIN) ./files/olsrd6.init $(1)/etc/init.d/olsrd6
-#	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
-#	$(INSTALL_BIN) ./files/olsrd.hotplug.sh $(1)/etc/hotplug.d/iface/50-olsrd
 endef
 
 define Package/olsrd-mod-arprefresh/install
 	$(INSTALL_DIR) $(1)/opt/lib
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lib/arprefresh/olsrd_arprefresh.so.* $(1)/opt/lib/
+endef
+
+define Package/olsrd-mod-filtergw/install
+	$(INSTALL_DIR) $(1)/opt/lib
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lib/filtergw/olsrd_filtergw.so.* $(1)/opt/lib/
 endef
 
 define Package/olsrd-mod-dot-draw/install
@@ -293,6 +302,7 @@ endef
 $(eval $(call BuildPackage,olsrd))
 $(eval $(call BuildPackage,olsrd-mod-arprefresh))
 $(eval $(call BuildPackage,olsrd-mod-dot-draw))
+$(eval $(call BuildPackage,olsrd-mod-filtergw))
 $(eval $(call BuildPackage,olsrd-mod-bmf))
 $(eval $(call BuildPackage,olsrd-mod-dyn-gw))
 $(eval $(call BuildPackage,olsrd-mod-dyn-gw-plain))
