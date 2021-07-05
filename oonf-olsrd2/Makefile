@@ -10,6 +10,7 @@ PKG_SOURCE_URL:=https://github.com/OLSR/OONF.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)
+PKG_MIRROR_HASH:=2e38140e804e7fc0138d0893416c4f19b1ca43bd9de066e8b028bd0d59ac9255
 
 CMAKE_INSTALL:=1
 
@@ -30,19 +31,19 @@ CMAKE_OPTIONAL_PLUGINS:= $(subst $(SPACE),;,$(strip \
 
 BUILD_TYPE:= $(if $(filter y,$(CONFIG_DEBUG)),Debug,Release)
 
-CMAKE_OPTIONS=-D CMAKE_BUILD_TYPE:String=$(BUILD_TYPE) \
-              -D OONF_NO_WERROR:Bool=true \
-              -D OONF_LOGGING_LEVEL:String=debug \
-              -D OONF_NO_TESTING:Bool=true \
-              -D UCI:Bool=true \
-              -D OONF_APP_DEFAULT_CFG_HANDLER:String=uci \
-              -D OONF_STATIC_PLUGINS:String="class;clock;duplicate_set;layer2;packet_socket;rfc5444;socket;stream_socket;telnet;timer;viewer;os_clock;os_fd;os_interface;os_routing;os_system;nhdp;olsrv2;ff_dat_metric;neighbor_probing;nl80211_listener;link_config;layer2info;systeminfo;cfg_uciloader;cfg_compact;nhdpinfo;olsrv2info;netjsoninfo;${CMAKE_OPTIONAL_PLUGINS}" \
-              -D OONF_LIB_GIT:String=v$(PKG_VERSION)-archive \
-              -D OONF_VERSION:String=$(PKG_VERSION) \
-              -D INSTALL_LIB_DIR:Path=lib/oonf \
-              -D INSTALL_INCLUDE_DIR:Path=include/oonf \
-              -D INSTALL_CMAKE_DIR:Path=lib/oonf \
-              -D CMAKE_PREFIX_PATH=$(STAGING_DIR)/usr
+CMAKE_OPTIONS+=-D CMAKE_BUILD_TYPE:String=$(BUILD_TYPE) \
+               -D OONF_NO_WERROR:Bool=true \
+               -D OONF_LOGGING_LEVEL:String=debug \
+               -D OONF_NO_TESTING:Bool=true \
+               -D UCI:Bool=true \
+               -D OONF_APP_DEFAULT_CFG_HANDLER:String=uci \
+               -D OONF_STATIC_PLUGINS:String="class;clock;duplicate_set;layer2;packet_socket;rfc5444;socket;stream_socket;telnet;timer;viewer;os_clock;os_fd;os_interface;os_routing;os_system;nhdp;olsrv2;ff_dat_metric;neighbor_probing;nl80211_listener;link_config;layer2info;systeminfo;cfg_uciloader;cfg_compact;nhdpinfo;olsrv2info;netjsoninfo;${CMAKE_OPTIONAL_PLUGINS}" \
+               -D OONF_LIB_GIT:String=v$(PKG_VERSION)-archive \
+               -D OONF_VERSION:String=$(PKG_VERSION) \
+               -D INSTALL_LIB_DIR:Path=lib/oonf \
+               -D INSTALL_INCLUDE_DIR:Path=include/oonf \
+               -D INSTALL_CMAKE_DIR:Path=lib/oonf \
+               -D CMAKE_PREFIX_PATH=$(STAGING_DIR)/usr
 
 define Package/oonf-git/template
 	SECTION:=net
