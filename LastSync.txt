@@ -1,10 +1,10 @@
-commit b38a46acd54879cd56de433a5e86c2dcf4b8b151 (HEAD -> master, origin/master, origin/HEAD)
-Author: Josef Schlehofer <pepe.schlehofer@gmail.com>
-Date:   Thu Mar 25 12:26:41 2021 +0100
+commit 64aa8866b73dbf8e68affddaec1456a1be9861f2 (HEAD -> master, origin/master, origin/HEAD)
+Author: Nick Hainke <vincent@systemli.org>
+Date:   Tue Jun 22 16:40:42 2021 +0200
 
-    bird2: Makefile polishing
+    olsrd: reload if config changed via uci
     
-    - Just small reodering of some rows to be more consistent with packages feed
-    - Fix deprecated SPDX License Identifier
+    Fixes:
+    https://github.com/openwrt/luci/issues/5139
     
-    Signed-off-by: Josef Schlehofer <pepe.schlehofer@gmail.com>
+    Signed-off-by: Nick Hainke <vincent@systemli.org>
