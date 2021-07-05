@@ -1,22 +1,21 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
 #
-# Copyright (C) 2007-2009 OpenWrt.org
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
+# Copyright (C) 2007-2021 OpenWrt.org
 #
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=babeld
-PKG_VERSION:=1.9.2
+PKG_VERSION:=1.10
 PKG_RELEASE:=$(AUTORELEASE)
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://www.irif.fr/~jch/software/files/
-PKG_HASH:=154f00e0a8bf35d6ea9028886c3dc5c3c342dd1a367df55ef29a547b75867f07
+PKG_HASH:=a5f54a08322640e97399bf4d1411a34319e6e277fbb6fc4966f38a17d72a8dea
 
 PKG_MAINTAINER:=Gabriel Kerneis <gabriel@kerneis.info>, \
-	Baptiste Jonglez <openwrt-pkg@bitsofnetworks.org>
+	Baptiste Jonglez <openwrt-pkg@bitsofnetworks.org>, \
+	Nick Hainke <vincent@systemli.org>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENCE
 
