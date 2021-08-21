@@ -1,10 +1,8 @@
-commit 64aa8866b73dbf8e68affddaec1456a1be9861f2 (HEAD -> master, origin/master, origin/HEAD)
-Author: Nick Hainke <vincent@systemli.org>
-Date:   Tue Jun 22 16:40:42 2021 +0200
+commit 85a8ceeb75de76674b9219adfce3ab0c5fdca91b (HEAD -> master, origin/master, origin/HEAD)
+Merge: 383c52f f399156
+Author: Simon Wunderlich <sw@simonwunderlich.de>
+Date:   Fri Aug 20 22:46:37 2021 +0200
 
-    olsrd: reload if config changed via uci
+    Merge pull request #716 from ecsv/batadv-2021.2
     
-    Fixes:
-    https://github.com/openwrt/luci/issues/5139
-    
-    Signed-off-by: Nick Hainke <vincent@systemli.org>
+    batman-adv: update packages to version 2021.2
