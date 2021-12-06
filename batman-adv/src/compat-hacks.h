@@ -51,6 +51,7 @@ inline void __batadv_br_ip_list_check(void)
 
 #if LINUX_VERSION_IS_LESS(5, 14, 0)
 
+#include <linux/if_bridge.h>
 #include <net/addrconf.h>
 
 #if IS_ENABLED(CONFIG_IPV6)
@@ -90,6 +91,17 @@ br_multicast_has_router_adjacent(struct net_device *dev, int proto)
 #endif
 
 #endif /* LINUX_VERSION_IS_LESS(5, 14, 0) */
+
+#if LINUX_VERSION_IS_LESS(5, 15, 0)
+
+static inline void batadv_eth_hw_addr_set(struct net_device *dev,
+					  const u8 *addr)
+{
+	ether_addr_copy(dev->dev_addr, addr);
+}
+#define eth_hw_addr_set batadv_eth_hw_addr_set
+
+#endif /* LINUX_VERSION_IS_LESS(5, 15, 0) */
 
 /* <DECLARE_EWMA> */
 
