@@ -1,8 +1,8 @@
-commit 85a8ceeb75de76674b9219adfce3ab0c5fdca91b (HEAD -> master, origin/master, origin/HEAD)
-Merge: 383c52f f399156
+commit 65585a746daae7060f69b265af178ab7a4e5c84c (HEAD -> master, origin/master, origin/HEAD)
+Merge: 3d6b699 a2fe1d4
 Author: Simon Wunderlich <sw@simonwunderlich.de>
-Date:   Fri Aug 20 22:46:37 2021 +0200
+Date:   Sun Nov 28 17:53:36 2021 +0100
 
-    Merge pull request #716 from ecsv/batadv-2021.2
+    Merge pull request #759 from ecsv/batadv-2021.4
     
-    batman-adv: update packages to version 2021.2
+    batman-adv: Drop duplicated dev_{hold,put} compat helpers
