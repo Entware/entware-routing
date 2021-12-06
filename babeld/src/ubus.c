@@ -74,6 +74,8 @@ static int babeld_ubus_babeld_info(struct ubus_context *ctx_local,
   if (ret)
     fprintf(stderr, "Failed to send reply: %s\n", ubus_strerror(ret));
 
+  blob_buf_free(&b);
+
   return ret;
 }
 
@@ -103,6 +105,8 @@ static int babeld_ubus_get_xroutes(struct ubus_context *ctx_local,
   LIST_HEAD(xroute_ipv4_list);
   LIST_HEAD(xroute_ipv6_list);
 
+  blob_buf_init(&b, 0);
+
   xroutes = xroute_stream();
   if (xroutes) {
     while (1) {
@@ -123,7 +127,6 @@ static int babeld_ubus_get_xroutes(struct ubus_context *ctx_local,
     xroute_stream_done(xroutes);
   }
 
-  blob_buf_init(&b, 0);
   ipv4 = blobmsg_open_table(&b, "IPv4");
   list_for_each_entry_safe(cur, tmp, &xroute_ipv4_list, list) {
     babeld_add_xroute_buf(cur->xroute, &b);
@@ -143,6 +146,8 @@ static int babeld_ubus_get_xroutes(struct ubus_context *ctx_local,
   ret = ubus_send_reply(ctx_local, req, b.head);
   if (ret)
     fprintf(stderr, "Failed to send reply: %s\n", ubus_strerror(ret));
+
+  blob_buf_free(&b);
 
   return ret;
 }
@@ -226,7 +231,6 @@ static int babeld_ubus_get_routes(struct ubus_context *ctx_local,
     route_stream_done(routes);
   }
 
-  blob_buf_init(&b, 0);
   ipv4 = blobmsg_open_table(&b, "IPv4");
   list_for_each_entry_safe(cur, tmp, &route_ipv4_list, list) {
     babeld_add_route_buf(cur->route, &b);
@@ -246,6 +250,8 @@ static int babeld_ubus_get_routes(struct ubus_context *ctx_local,
   ret = ubus_send_reply(ctx_local, req, b.head);
   if (ret)
     fprintf(stderr, "Failed to send reply: %s\n", ubus_strerror(ret));
+
+  blob_buf_free(&b);
 
   return ret;
 }
@@ -295,8 +301,6 @@ static int babeld_ubus_get_neighbours(struct ubus_context *ctx_local,
     }
   }
 
-  blob_buf_init(&b, 0);
-
   ipv4 = blobmsg_open_table(&b, "IPv4");
   list_for_each_entry_safe(cur, tmp, &neighbour_ipv4_list, list) {
     babeld_add_neighbour_buf(cur->neighbour, &b);
@@ -316,6 +320,8 @@ static int babeld_ubus_get_neighbours(struct ubus_context *ctx_local,
   ret = ubus_send_reply(ctx_local, req, b.head);
   if (ret)
     fprintf(stderr, "Failed to send reply: %s\n", ubus_strerror(ret));
+
+  blob_buf_free(&b);
 
   return ret;
 }
@@ -383,6 +389,7 @@ void ubus_notify_route(struct babel_route *route, int kind) {
   babeld_add_route_buf(route, &b);
   snprintf(method, sizeof(method), "route.%s", local_kind(kind));
   ubus_notify(shared_ctx, &babeld_object, method, b.head, -1);
+  blob_buf_free(&b);
 }
 
 void ubus_notify_xroute(struct xroute *xroute, int kind) {
@@ -403,6 +410,7 @@ void ubus_notify_xroute(struct xroute *xroute, int kind) {
   babeld_add_xroute_buf(xroute, &b);
   snprintf(method, sizeof(method), "xroute.%s", local_kind(kind));
   ubus_notify(shared_ctx, &babeld_object, method, b.head, -1);
+  blob_buf_free(&b);
 }
 
 void ubus_notify_neighbour(struct neighbour *neigh, int kind) {
@@ -422,6 +430,7 @@ void ubus_notify_neighbour(struct neighbour *neigh, int kind) {
   babeld_add_neighbour_buf(neigh, &b);
   snprintf(method, sizeof(method), "neigh.%s", local_kind(kind));
   ubus_notify(shared_ctx, &babeld_object, method, b.head, -1);
+  blob_buf_free(&b);
 }
 
 void babeld_ubus_receive(fd_set *readfds) {
