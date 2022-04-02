@@ -1,16 +1,16 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=oonf-dlep-radio
-PKG_VERSION:=v0.15.1
-PKG_REV:=bffb88b040659b237c4c91b6b42dbbb47431750e
-PKG_RELEASE:=$(PKG_REV)
+PKG_VERSION:=0.15.1
+PKG_RELEASE:=$(AUTORELEASE)
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=https://github.com/OLSR/OONF.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=334047912bbeb3d49874a06cc89fcc8c07a7ee2296d056fc5f047ad51aeb21fa
+PKG_SOURCE_URL:=https://github.com/OLSR/OONF.git
+PKG_SOURCE_DATE:=2018-03-19
+PKG_SOURCE_VERSION:=bffb88b040659b237c4c91b6b42dbbb47431750e
+PKG_MIRROR_HASH:=c85bf1e38483979f44486b6ad90800535fc7039a162c536c239d897b7c68ef70
+
+PKG_MAINTAINER:=Henning Rogge <hrogge@gmail.com>
 
 CMAKE_INSTALL:=1
 
@@ -30,19 +30,13 @@ CMAKE_OPTIONS+=-D OONF_NO_WERROR:Bool=true \
                -D INSTALL_CMAKE_DIR:Path=lib/oonf \
                -D CMAKE_PREFIX_PATH=$(STAGING_DIR)/usr
 
-define Package/oonf-git/template
-	SECTION:=net
-	CATEGORY:=Network
-	MAINTAINER:=Henning Rogge <hrogge@gmail.com>
-	SUBMENU:=OLSR.org network framework
-	URL:=http://www.olsr.org/
-endef
-
 define Package/oonf-dlep-radio
-	$(call Package/oonf-git/template)
-	TITLE:= Build DLEP Radio Agent
-	DEPENDS:=+librt +libnl-tiny +libuci +oonf-init-scripts
-	VERSION:=$(PKG_VERSION)
+  SECTION:=net
+  CATEGORY:=Network
+  SUBMENU:=OLSR.org network framework
+  URL:=http://www.olsr.org/
+  TITLE:=Build DLEP Radio Agent
+  DEPENDS:=+librt +libnl-tiny +libuci +oonf-init-scripts
 endef
 
 Build/Compile=$(call Build/Compile/Default,dlep_radio_static)
