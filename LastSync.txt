@@ -1,8 +1,10 @@
-commit 65585a746daae7060f69b265af178ab7a4e5c84c (HEAD -> master, origin/master, origin/HEAD)
-Merge: 3d6b699 a2fe1d4
-Author: Simon Wunderlich <sw@simonwunderlich.de>
-Date:   Sun Nov 28 17:53:36 2021 +0100
+commit 65f747a8bcf19e0271e6bbe04c2432f9a93cc406 (HEAD -> master, origin/master, origin/HEAD)
+Author: Nick Hainke <vincent@systemli.org>
+Date:   Fri Apr 1 10:16:56 2022 +0200
 
-    Merge pull request #759 from ecsv/batadv-2021.4
+    naywatch: fix reboot_now
     
-    batman-adv: Drop duplicated dev_{hold,put} compat helpers
+    Naywatch should first try to reboot normally, and if that does not work
+    do a hard reboot. However, the hard reboot was never called.
+    
+    Signed-off-by: Nick Hainke <vincent@systemli.org>
