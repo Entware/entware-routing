@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <sys/select.h>
 
-#include <libubus.h>
 #include <libubox/blob.h>
 #include <libubox/blobmsg.h>
 #include <libubox/list.h>
+#include <libubus.h>
 
 #include <arpa/inet.h>
 #include <net/if.h>
@@ -53,6 +53,95 @@ struct neighbour_list_entry {
   struct list_head list;
   struct neighbour *neighbour;
 };
+
+// Definition of interface function enums (to be used with ubox's blobmsg
+// helpers).
+enum { INTERFACE_IFNAME, __INTERFACE_MAX };
+
+// Definition of interface parsing (to be used with ubox's blobmsg helpers).
+static const struct blobmsg_policy interface_policy[__INTERFACE_MAX] = {
+    [INTERFACE_IFNAME] = {"ifname", BLOBMSG_TYPE_STRING},
+};
+
+// Definition of filter function enums (to be used with ubox's blobmsg
+// helpers).
+enum { FILTER_IFNAME, FILTER_TYPE, FILTER_METRIC, __FILTER_MAX };
+
+// Definition of filter parsing (to be used with ubox's blobmsg helpers).
+static const struct blobmsg_policy filter_policy[__FILTER_MAX] = {
+    [FILTER_IFNAME] = {"ifname", BLOBMSG_TYPE_STRING},
+    [FILTER_TYPE] = {"type", BLOBMSG_TYPE_INT32},
+    [FILTER_METRIC] = {"metric", BLOBMSG_TYPE_INT32},
+};
+
+// Adds a filter (ubus equivalent to "filter"-function).
+static int babeld_ubus_add_filter(struct ubus_context *ctx_local,
+                                  struct ubus_object *obj,
+                                  struct ubus_request_data *req,
+                                  const char *method, struct blob_attr *msg) {
+  struct blob_attr *tb[__FILTER_MAX];
+  struct blob_buf b = {0};
+  struct filter *filter = NULL;
+  char *ifname;
+  int metric, type;
+
+  blobmsg_parse(filter_policy, __FILTER_MAX, tb, blob_data(msg), blob_len(msg));
+
+  if (!tb[FILTER_IFNAME])
+    return UBUS_STATUS_INVALID_ARGUMENT;
+
+  if (!tb[FILTER_TYPE])
+    return UBUS_STATUS_INVALID_ARGUMENT;
+
+  type = blobmsg_get_u32(tb[FILTER_TYPE]);
+
+  if (tb[FILTER_METRIC])
+    metric = blobmsg_get_u32(tb[FILTER_METRIC]);
+
+  filter = calloc(1, sizeof(struct filter));
+  if (filter == NULL)
+    return UBUS_STATUS_UNKNOWN_ERROR;
+
+  filter->af = AF_INET6;
+  filter->proto = 0;
+  filter->plen_le = 128;
+  filter->src_plen_le = 128;
+  filter->action.add_metric = metric;
+
+  ifname = blobmsg_get_string(tb[FILTER_IFNAME]);
+  filter->ifname = strdup(ifname);
+  filter->ifindex = if_nametoindex(filter->ifname);
+
+  add_filter(filter, type);
+
+  return UBUS_STATUS_OK;
+}
+
+// Adds an inteface (ubus equivalent to "interface"-function).
+static int babeld_ubus_add_interface(struct ubus_context *ctx_local,
+                                     struct ubus_object *obj,
+                                     struct ubus_request_data *req,
+                                     const char *method,
+                                     struct blob_attr *msg) {
+  struct blob_attr *tb[__INTERFACE_MAX];
+  struct blob_buf b = {0};
+  struct interface *ifp = NULL;
+  char *ifname;
+
+  blobmsg_parse(interface_policy, __INTERFACE_MAX, tb, blob_data(msg),
+                blob_len(msg));
+
+  if (!tb[INTERFACE_IFNAME])
+    return UBUS_STATUS_INVALID_ARGUMENT;
+
+  ifname = blobmsg_get_string(tb[INTERFACE_IFNAME]);
+
+  ifp = add_interface(ifname, NULL);
+  if (ifp == NULL)
+    return UBUS_STATUS_UNKNOWN_ERROR;
+
+  return UBUS_STATUS_OK;
+}
 
 // Sends a babel info message on ubus socket.
 static int babeld_ubus_babeld_info(struct ubus_context *ctx_local,
@@ -328,6 +417,8 @@ static int babeld_ubus_get_neighbours(struct ubus_context *ctx_local,
 
 // List of functions we expose via the ubus bus.
 static const struct ubus_method babeld_methods[] = {
+    UBUS_METHOD("add_interface", babeld_ubus_add_interface, interface_policy),
+    UBUS_METHOD("add_filter", babeld_ubus_add_filter, filter_policy),
     UBUS_METHOD_NOARG("get_info", babeld_ubus_babeld_info),
     UBUS_METHOD_NOARG("get_xroutes", babeld_ubus_get_xroutes),
     UBUS_METHOD_NOARG("get_routes", babeld_ubus_get_routes),
