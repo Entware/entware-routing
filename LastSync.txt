@@ -1,10 +1,8 @@
-commit 65f747a8bcf19e0271e6bbe04c2432f9a93cc406 (HEAD -> master, origin/master, origin/HEAD)
-Author: Nick Hainke <vincent@systemli.org>
-Date:   Fri Apr 1 10:16:56 2022 +0200
+commit 9abed610185f60c7e2054f5466e0ba2c225154e7 (HEAD -> master, origin/master, origin/HEAD)
+Merge: cfd8272 1fa9fa3
+Author: Toke Høiland-Jørgensen <toke@toke.dk>
+Date:   Tue Jun 28 17:30:14 2022 +0200
 
-    naywatch: fix reboot_now
+    Merge pull request #895 from mbargo23/mbargo23/bird2
     
-    Naywatch should first try to reboot normally, and if that does not work
-    do a hard reboot. However, the hard reboot was never called.
-    
-    Signed-off-by: Nick Hainke <vincent@systemli.org>
+    bird2: bump to version 2.0.10
