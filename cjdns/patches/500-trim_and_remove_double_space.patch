@@ -1,16 +1,16 @@
 --- a/node_build/make.js
 +++ b/node_build/make.js
-@@ -26,7 +26,8 @@ var TestRunner = require('./TestRunner')
- // ['linux','darwin','sunos','win32','freebsd','openbsd','netbsd']
- var SYSTEM = process.env['SYSTEM'] || process.platform;
- var GCC = process.env['CC'];
+@@ -25,7 +25,8 @@ var TestRunner = require('./TestRunner')
+ const CjdnsTest = require('./CjdnsTest');
+ const GetVersion = require('./GetVersion');
+ 
 -var CFLAGS = process.env['CFLAGS'];
 +var CFLAGS = process.env['CFLAGS'].trim().replace('  ',' ');
 +process.env['CFLAGS']=CFLAGS;
  var LDFLAGS = process.env['LDFLAGS'];
- 
  var NO_MARCH_FLAG = ['arm', 'ppc', 'ppc64'];
-@@ -312,6 +313,7 @@ Builder.configure({
+ 
+@@ -300,6 +301,7 @@ Builder.configure({
          builder.config.libs.push(libuvLib);
          if (!android) {
              builder.config.libs.push('-lpthread');
