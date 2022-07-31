@@ -97,7 +97,13 @@ protocols, telling BIRD to show various information, telling it to show
 a routing table filtered by a filter, or asking BIRD to reconfigure.
 endef
 
-CONFIGURE_ARGS += --disable-libssh
+CONFIGURE_ARGS += \
+	--disable-libssh \
+	--with-iproutedir=/opt/etc/iproute2
+
+CONFIGURE_VARS += \
+	ac_cv_func_getentropy=no \
+	ac_cv_func_getrandom=no
 
 define Package/bird2/conffiles
 /opt/etc/bird.conf
@@ -110,8 +116,8 @@ define Package/bird2/install
 	$(INSTALL_BIN)  $(PKG_BUILD_DIR)/bird $(1)/opt/sbin/
 	$(INSTALL_DIR)  $(1)/opt/etc
 	$(INSTALL_DATA) ./files/bird.conf $(1)/opt/etc/
-#	$(INSTALL_DIR)  $(1)/etc/init.d
-#	$(INSTALL_BIN)  ./files/bird.init $(1)/etc/init.d/bird
+	$(INSTALL_DIR)  $(1)/opt/etc/init.d
+	$(INSTALL_BIN)  ./files/S70bird $(1)/opt/etc/init.d/
 endef
 
 define Package/bird2c/install
