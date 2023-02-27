@@ -1,5 +1,13 @@
-commit d5c4ef98c904467cbf058c99daccc0a6b8de985e (HEAD -> master, origin/master, origin/HEAD)
-Author: krzys-h <krzys_h@interia.pl>
-Date:   Sat Jul 23 10:30:18 2022 +0200
+commit 914c27aeb66b21c7510e376625e9ec386a56ee35 (HEAD -> master, origin/master, origin/HEAD)
+Author: Roger Pueyo Centelles <roger.pueyo@guifi.net>
+Date:   Tue Dec 13 16:53:04 2022 +0100
 
-    bird1: Add missing dependency on luci-compat
+    bird1-openwrt: use a single Makefile for IPv4 and IPv6 packages
+    
+    Having two Makefile files, respectively in the bird1-openwrt-ipv4 and
+    bird1-ipv6-openwrt folders, made the CI tests fail at the time of
+    building the packages, due to a compilation error. This patch merges
+    both Makefile files into a single one. As a result, package compilation
+    succeeds during the CI tests.
+    
+    Signed-off-by: Roger Pueyo Centelles <roger.pueyo@guifi.net>
