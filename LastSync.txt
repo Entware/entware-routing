@@ -1,13 +1,5 @@
-commit 914c27aeb66b21c7510e376625e9ec386a56ee35 (HEAD -> master, origin/master, origin/HEAD)
-Author: Roger Pueyo Centelles <roger.pueyo@guifi.net>
-Date:   Tue Dec 13 16:53:04 2022 +0100
+commit e8856b93da72f9d1a8490a59cdba5ecfbe76c84e (HEAD -> master, origin/openwrt-23.05, origin/master, origin/HEAD)
+Author: William Fleurant <meshnet@protonmail.com>
+Date:   Sun May 21 03:33:54 2023 +0200
 
-    bird1-openwrt: use a single Makefile for IPv4 and IPv6 packages
-    
-    Having two Makefile files, respectively in the bird1-openwrt-ipv4 and
-    bird1-ipv6-openwrt folders, made the CI tests fail at the time of
-    building the packages, due to a compilation error. This patch merges
-    both Makefile files into a single one. As a result, package compilation
-    succeeds during the CI tests.
-    
-    Signed-off-by: Roger Pueyo Centelles <roger.pueyo@guifi.net>
+    cjdns: patch of gyp imports support python3.10 (#974)
