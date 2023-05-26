@@ -7,7 +7,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=olsrd
 PKG_SOURCE_DATE:=2022-03-18
-PKG_RELEASE:=3
+PKG_RELEASE:=5
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/OLSR/olsrd.git
@@ -305,10 +305,10 @@ define Package/olsrd-mod-watchdog/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lib/watchdog/olsrd_watchdog.so.* $(1)/opt/lib/
 endef
 
-#define Package/olsrd-utils/install
-#	$(INSTALL_DIR) $(1)/usr/bin
-#	$(INSTALL_BIN) ./files/olsrd-neigh.sh $(1)/usr/bin/olsrd-neigh
-#endef
+define Package/olsrd-utils/install
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) ./files/olsrd-neigh.sh $(1)/usr/bin/olsrd-neigh
+endef
 
 $(eval $(call BuildPackage,olsrd))
 $(eval $(call BuildPackage,olsrd-mod-arprefresh))
