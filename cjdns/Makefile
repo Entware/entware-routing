@@ -73,7 +73,7 @@ ifneq ($(CONFIG_USE_UCLIBC),)
 PKG_DO_VARS+= UCLIBC=1
 endif
 
-ifeq ($(or $(CONFIG_GCC_USE_VERSION_8),$(CONFIG_GCC_USE_VERSION_9)),y)
+ifeq ($(CONFIG_GCC_USE_VERSION_8),y)
 TARGET_CFLAGS += -Wno-error=stringop-truncation -Wno-error=cpp -Wno-error=deprecated-declarations
 endif
 
