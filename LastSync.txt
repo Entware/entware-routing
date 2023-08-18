@@ -1,5 +1,27 @@
-commit e8856b93da72f9d1a8490a59cdba5ecfbe76c84e (HEAD -> master, origin/openwrt-23.05, origin/master, origin/HEAD)
-Author: William Fleurant <meshnet@protonmail.com>
-Date:   Sun May 21 03:33:54 2023 +0200
+commit 5beb3be9b86ddd1e859dd9ad38d1fb9a1a32dc65 (HEAD -> master, origin/master, origin/HEAD)
+Author: Rob White <rob@blue-wave.net>
+Date:   Mon Jul 31 21:33:11 2023 +0100
 
-    cjdns: patch of gyp imports support python3.10 (#974)
+    mesh11sd: Release v2.0.0
+    
+    Maintainer: Rob White rob@blue-wave.net
+    Compile tested: All
+    Run tested: arm_cortex-a7_neon-vfpv4, mipsel_24kc, x86-64, on 21.02, 22.03 and snapshot.
+    
+    Description:
+    mesh11sd (2.0.0)
+    
+    This release contains new functionality.
+    
+    Autonomous portal mode is introduced. This simplifies the rollout of meshnodes allowing a common configuration to be used on all nodes.
+    Remote administration is introduced, allowing files to be copied and terminal sessions to be opened on established meshnodes, identifying remote nodes by mac address.
+    
+     * Add - Update config file [bluewavenet]
+     * Add - implementation of remote copy [bluewavenet]
+     * Add - implementation of remote connect [bluewavenet]
+     * Add - Autonomous portal mode [bluewavenet]
+    
+    -- Rob White dot@blue-wave.net Mon, 31 Jul 2023 16:59:52 +0000
+    
+    
+    Signed-off-by: Rob White <rob@blue-wave.net>
