@@ -1,27 +1,8 @@
-commit 5beb3be9b86ddd1e859dd9ad38d1fb9a1a32dc65 (HEAD -> master, origin/master, origin/HEAD)
-Author: Rob White <rob@blue-wave.net>
-Date:   Mon Jul 31 21:33:11 2023 +0100
+commit 61f15a76a62abd312cd73ff187e5e91e647af1a1 (HEAD -> master, origin/master, origin/HEAD)
+Merge: 6a7a1a5 9090aef
+Author: Simon Wunderlich <sw@simonwunderlich.de>
+Date:   Mon Feb 5 10:54:07 2024 +0100
 
-    mesh11sd: Release v2.0.0
+    Merge pull request #1045 from ecsv/batadv-2024.0
     
-    Maintainer: Rob White rob@blue-wave.net
-    Compile tested: All
-    Run tested: arm_cortex-a7_neon-vfpv4, mipsel_24kc, x86-64, on 21.02, 22.03 and snapshot.
-    
-    Description:
-    mesh11sd (2.0.0)
-    
-    This release contains new functionality.
-    
-    Autonomous portal mode is introduced. This simplifies the rollout of meshnodes allowing a common configuration to be used on all nodes.
-    Remote administration is introduced, allowing files to be copied and terminal sessions to be opened on established meshnodes, identifying remote nodes by mac address.
-    
-     * Add - Update config file [bluewavenet]
-     * Add - implementation of remote copy [bluewavenet]
-     * Add - implementation of remote connect [bluewavenet]
-     * Add - Autonomous portal mode [bluewavenet]
-    
-    -- Rob White dot@blue-wave.net Mon, 31 Jul 2023 16:59:52 +0000
-    
-    
-    Signed-off-by: Rob White <rob@blue-wave.net>
+    batman-adv: Provide teardown hook for batadv_vlan proto
