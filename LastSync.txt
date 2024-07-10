@@ -1,8 +1,8 @@
-commit 61f15a76a62abd312cd73ff187e5e91e647af1a1 (HEAD -> master, origin/master, origin/HEAD)
-Merge: 6a7a1a5 9090aef
+commit 6d376d6df0bcd37a8d4089217f60edbc243d39e9 (HEAD -> master, origin/master, origin/HEAD)
+Merge: 8d8cfe8 7e94199
 Author: Simon Wunderlich <sw@simonwunderlich.de>
-Date:   Mon Feb 5 10:54:07 2024 +0100
+Date:   Mon Jun 24 14:59:22 2024 +0200
 
-    Merge pull request #1045 from ecsv/batadv-2024.0
+    Merge pull request #1071 from ecsv/batadv-2024.2
     
-    batman-adv: Provide teardown hook for batadv_vlan proto
+    batman-adv: update packages to version 2024.2
