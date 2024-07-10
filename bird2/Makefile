@@ -4,6 +4,8 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 
+# Entware specific: keep version 2.14; kernels are too old (MPLS since Linux 4.6)
+
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bird2
