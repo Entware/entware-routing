@@ -1,8 +1,27 @@
-commit 6d376d6df0bcd37a8d4089217f60edbc243d39e9 (HEAD -> master, origin/master, origin/HEAD)
-Merge: 8d8cfe8 7e94199
-Author: Simon Wunderlich <sw@simonwunderlich.de>
-Date:   Mon Jun 24 14:59:22 2024 +0200
+commit 5998119c5530fbd4ab844edee3c4da0ea4fec924 (HEAD -> master, origin/master, origin/HEAD)
+Author: Nick Hainke <vincent@systemli.org>
+Date:   Wed Dec 18 19:03:30 2024 +0100
 
-    Merge pull request #1071 from ecsv/batadv-2024.2
+    bird3: add new bird3 package
     
-    batman-adv: update packages to version 2024.2
+    This commit introduces the `bird3` package to OpenWrt's routing feed.
+    The package is primarily based on the existing `bird2` package, with
+    minor modifications to accommodate the updates and changes in BIRD
+    3.0.0. I have also added myself as the maintainer for this package.
+    
+    BIRD 3.0.0 is a major release that brings multithreading support,
+    enabling better performance for protocols like BGP, BMP, RPKI, and
+    others. The internal rework has introduced significant changes to the
+    table and channel implementations, while protocol-level functionality
+    remains largely consistent with BIRD 2.16. Although there are minor
+    breaking changes in configuration and CLI, most existing setups should
+    be reusable.
+    
+    Memory usage has increased in this version, with improvements planned
+    for subsequent releases. Migration documentation is available in
+    `doc/migration-bird3.md` from the official BIRD repository.
+    
+    For more details, see the official announcement:
+    https://trubka.network.cz/pipermail/bird-users/2024-December/017973.html
+    
+    Signed-off-by: Nick Hainke <vincent@systemli.org>
