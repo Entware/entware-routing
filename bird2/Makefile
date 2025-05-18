@@ -13,7 +13,7 @@ PKG_VERSION:=2.14
 PKG_RELEASE:=1
 
 PKG_SOURCE:=bird-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=ftp://bird.network.cz/pub/bird
+PKG_SOURCE_URL:=https://bird.network.cz/download/
 PKG_HASH:=b0b9f6f8566541b9be4af1f0cac675c5a3785601a55667a7ec3d7de29735a786
 
 PKG_MAINTAINER:=Toke Høiland-Jørgensen <toke@toke.dk>
