@@ -1,27 +1,18 @@
-commit 5998119c5530fbd4ab844edee3c4da0ea4fec924 (HEAD -> master, origin/master, origin/HEAD)
-Author: Nick Hainke <vincent@systemli.org>
-Date:   Wed Dec 18 19:03:30 2024 +0100
+commit 9eda32a8c96fc184e6b208a54dbf43a1379fa0be (HEAD -> master, origin/master, origin/HEAD)
+Author: Rob White <rob@blue-wave.net>
+Date:   Tue May 13 11:16:08 2025 +0100
 
-    bird3: add new bird3 package
+    mesh11sd: update to version 5.1.0
+    This is a minor release, with some minor fixes. It introduces some new functionality, including the following:
     
-    This commit introduces the `bird3` package to OpenWrt's routing feed.
-    The package is primarily based on the existing `bird2` package, with
-    minor modifications to accommodate the updates and changes in BIRD
-    3.0.0. I have also added myself as the maintainer for this package.
+       * Add - option mesh_phyindex to force selection of phy for mesh interface
+       * Add - footnote links to README.md, using double spaces for newlines
+       * Add - auto leechmode to mesh path stabilisation
+       * Add - mesh_leechmode sets mesh_max_peerlinks to 1
+       * Add - restart opennds captive portal if it is installed and running when mesh11sd starts, to sync the nftables rulesets of both packages.
     
-    BIRD 3.0.0 is a major release that brings multithreading support,
-    enabling better performance for protocols like BGP, BMP, RPKI, and
-    others. The internal rework has introduced significant changes to the
-    table and channel implementations, while protocol-level functionality
-    remains largely consistent with BIRD 2.16. Although there are minor
-    breaking changes in configuration and CLI, most existing setups should
-    be reusable.
+    The full changelog can be seen here:
+    https://github.com/openNDS/mesh11sd/blob/v5.1.0/ChangeLog
     
-    Memory usage has increased in this version, with improvements planned
-    for subsequent releases. Migration documentation is available in
-    `doc/migration-bird3.md` from the official BIRD repository.
     
-    For more details, see the official announcement:
-    https://trubka.network.cz/pipermail/bird-users/2024-December/017973.html
-    
-    Signed-off-by: Nick Hainke <vincent@systemli.org>
+    Signed-off-by: Rob White <rob@blue-wave.net>
