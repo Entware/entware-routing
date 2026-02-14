@@ -8,7 +8,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=vis
-PKG_RELEASE:=9
+PKG_RELEASE:=10
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2013-04-07
@@ -16,7 +16,7 @@ PKG_SOURCE_VERSION:=7710cce42e8d63ea114056a4a140835d4a452933
 PKG_SOURCE_URL:=https://git.open-mesh.org/vis.git
 PKG_MIRROR_HASH:=2544df816f9294e192cd6bb3592695416796fc6b254d182f1f124e686833f50d
 
-PKG_MAINTAINER:=Corinna "Elektra" Aichele <onelektra@gmx.net>
+PKG_MAINTAINER:=Corinna Aichele <onelektra@gmx.net>
 PKG_LICENSE:=GPL-2.0-only
 
 PKG_BUILD_PARALLEL:=1
@@ -46,7 +46,7 @@ define Package/vis/install
 	$(INSTALL_DIR) $(1)/usr/sbin $(1)/etc/config $(1)/etc/init.d
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/vis $(1)/usr/sbin/
 	$(INSTALL_BIN) ./files/etc/init.d/vis $(1)/etc/init.d
-	$(INSTALL_DATA) ./files/etc/config/vis $(1)/etc/config
+	$(INSTALL_CONF) ./files/etc/config/vis $(1)/etc/config
 endef
 
 define Package/vis/conffiles
