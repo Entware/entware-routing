@@ -77,6 +77,14 @@ ifeq ($(CONFIG_GCC_USE_VERSION_8),y)
 TARGET_CFLAGS += -Wno-error=stringop-truncation -Wno-error=cpp -Wno-error=deprecated-declarations
 endif
 
+ifneq ($(CONFIG_GCC_USE_VERSION_8),y)
+TARGET_CFLAGS += -Wno-error=stringop-overread
+endif
+
+ifeq ($(CONFIG_GCC_USE_VERSION_14),y)
+TARGET_CFLAGS += -Wno-error=calloc-transposed-args
+endif
+
 define Build/Compile
 	$(INSTALL_DIR) $(PKG_BUILD_DIR)/tmp
 	(cd $(PKG_BUILD_DIR) && \
