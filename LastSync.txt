@@ -1,18 +1,15 @@
-commit 9eda32a8c96fc184e6b208a54dbf43a1379fa0be (HEAD -> master, origin/master, origin/HEAD)
-Author: Rob White <rob@blue-wave.net>
-Date:   Tue May 13 11:16:08 2025 +0100
+commit bdf571c0ea5b9b029707787e0f89be7bbd3d75e3 (HEAD -> master, origin/master, origin/HEAD)
+Author: Packet Please <pktpls@systemli.org>
+Date:   Sun Jan 11 21:01:41 2026 +0100
 
-    mesh11sd: update to version 5.1.0
-    This is a minor release, with some minor fixes. It introduces some new functionality, including the following:
+    bird3: update to 3.2.0
     
-       * Add - option mesh_phyindex to force selection of phy for mesh interface
-       * Add - footnote links to README.md, using double spaces for newlines
-       * Add - auto leechmode to mesh path stabilisation
-       * Add - mesh_leechmode sets mesh_max_peerlinks to 1
-       * Add - restart opennds captive portal if it is installed and running when mesh11sd starts, to sync the nftables rulesets of both packages.
+    Version 3.2.0 (2025-12-26)
+    - BGP: Listening socket rework
+    - IGP metric: Split out local_metric again
+    - Table: Optimal and Any Export refactoring
+    - Various race condition fixes
+    - All fixes included in 3.1.0 -- 3.1.5
+    - Merged 2.18
     
-    The full changelog can be seen here:
-    https://github.com/openNDS/mesh11sd/blob/v5.1.0/ChangeLog
-    
-    
-    Signed-off-by: Rob White <rob@blue-wave.net>
+    Signed-off-by: Packet Please <pktpls@systemli.org>
