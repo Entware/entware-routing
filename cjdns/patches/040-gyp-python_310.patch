@@ -6,8 +6,8 @@
  
 -import collections
 +try:
-+  # Python 3.10
-+  from six.moves import collections_abc as collections
++  # Python 3; retain the fallback for Python 2.7.
++  import collections.abc as collections
 +except ImportError:
 +  import collections
  import errno
